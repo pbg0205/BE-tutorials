@@ -1,1 +1,3 @@
 rootProject.name = 'spring-tutorials'
+
+include 'spring-integration'

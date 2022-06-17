@@ -1,4 +1,0 @@
-rootProject.name = 'spring-tutorials'
-
-include 'spring-integration'
-include 'spring-redis'

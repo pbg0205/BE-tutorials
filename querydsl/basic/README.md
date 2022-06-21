@@ -1,8 +1,13 @@
+### Index
+
+---
+
 - [QueryDSL](#QueryDSL)
 - [Configuration](#Configuration)
   - [gradle](#gradle)
   - [application.yml](#application-yml)
-
+- [JPQL 대신 Querydsl 을 사용하는 이유](JPQL-대신-Querydsl-을-사용하는-이유)
+- [결과 조회](결과-조회)
 
 # QueryDSL
 
@@ -11,9 +16,13 @@
 - 문법이 SQL 과 비슷하기 때문에 편리하게 작성할 수 있다.
 
 <br>
+
 ## Configuration
 
 ### gradle
+
+---
+
 ```groovy
 buildscript {
     ext {
@@ -100,6 +109,9 @@ compileQuerydsl {
 <br>
 
 ### application.yml
+
+---
+
 ```
 spring:
   datasource:
@@ -114,12 +126,17 @@ spring:
 
 ### JPQL 대신 Querydsl 을 사용하는 이유
 
+---
+
 - JPQL 은 문자이기 때문에 런타임 에러를 반환하는 반면, **컴파일 시점에서 오류를 반환한다.**
 - JPQL 은 직접 파라미터를 바인딩하는 반면, **파라미터 바인딩을 자동 처리**한다.
 
 <br>
 
 ### 결과 조회
+
+---
+
 - **fetch()** : 리스트 조회, 데이터 없으면 빈 리스트 반환
 - **fetchOne()** : 단 건 조회 
   - 결과가 없으면 : null 

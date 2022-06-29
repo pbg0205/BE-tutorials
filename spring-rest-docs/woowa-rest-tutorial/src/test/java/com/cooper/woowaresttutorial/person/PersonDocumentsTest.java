@@ -29,8 +29,9 @@ import static org.springframework.restdocs.request.RequestDocumentation.paramete
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@AutoConfigureRestDocs
 @WebMvcTest(PersonController.class)
+@ExtendWith(RestDocumentationExtension.class)
+@AutoConfigureRestDocs
 public class PersonDocumentsTest {
 
     @Autowired

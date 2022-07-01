@@ -12,4 +12,5 @@ include 'logging', 'springboot-logback'
 include 'querydsl', 'basic'
 include 'spring-mvc', 'spring-mvc1'
 include 'spring-rest-docs', 'woowa-rest-tutorial'
+include 'spring-integration'
 

@@ -10,9 +10,11 @@
 
 [[spring.io]
 @AuthenticationPrincipal](https://docs.spring.io/spring-security/reference/servlet/integrations/mvc.html#mvc-authentication-principal)
-> @AuthenticationPrincipal [[spring docs](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/annotation/AuthenticationPrincipal.html)] :
+>
+@AuthenticationPrincipal [[spring docs](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/annotation/AuthenticationPrincipal.html)] :
 > Annotation that is used to
-> resolve [Authentication.getPrincipal()](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/Authentication.html#getPrincipal())
+>
+resolve [Authentication.getPrincipal()](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/Authentication.html#getPrincipal())
 > to a method argument.
 
 - **Authentication.getPrincipal**
@@ -95,6 +97,7 @@ public ResponseEntity updateComment(@RequestBody @Valid CommentUpdateRequestDto 
 > Allows resolving the Authentication.getPrincipal() using the AuthenticationPrincipal annotation
 
 -
+
 package [org.springframework.security.web.method.annotation](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/method/annotation/package-summary.html)
 하위에 존재하는 클래스
 
@@ -154,34 +157,38 @@ public final class AuthenticationPrincipalArgumentResolver implements HandlerMet
 `resolveArgument`
 
 ```java
-public Object resolveArgument(MethodParameter parameter,ModelAndViewContainer mavContainer,NativeWebRequest webRequest,WebDataBinderFactory binderFactory){
-        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-        if(authentication==null){
-        return null;
-        }else{
-        Object principal=authentication.getPrincipal();
-        AuthenticationPrincipal annotation=(AuthenticationPrincipal)this.findMethodAnnotation(AuthenticationPrincipal.class,parameter); //(1)
-        String expressionToParse=annotation.expression();
-        if(StringUtils.hasLength(expressionToParse)){
-        StandardEvaluationContext context=new StandardEvaluationContext(); // (2)
-        context.setRootObject(principal);
-        context.setVariable("this",principal);
-        context.setBeanResolver(this.beanResolver);
-        Expression expression=this.parser.parseExpression(expressionToParse); // (3)
-        principal=expression.getValue(context);
-        }
 
-        if(principal!=null&&!ClassUtils.isAssignable(parameter.getParameterType(),principal.getClass())){
-        if(annotation.errorOnInvalidType()){
-        throw new ClassCastException(principal+" is not assignable to "+parameter.getParameterType());
-        }else{
-        return null;
+public class sample {
+
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null) {
+            return null;
+        } else {
+            Object principal = authentication.getPrincipal();
+            AuthenticationPrincipal annotation = (AuthenticationPrincipal) this.findMethodAnnotation(AuthenticationPrincipal.class, parameter); //(1)
+            String expressionToParse = annotation.expression();
+            if (StringUtils.hasLength(expressionToParse)) {
+                StandardEvaluationContext context = new StandardEvaluationContext(); // (2)
+                context.setRootObject(principal);
+                context.setVariable("this", principal);
+                context.setBeanResolver(this.beanResolver);
+                Expression expression = this.parser.parseExpression(expressionToParse); // (3)
+                principal = expression.getValue(context);
+            }
+
+            if (principal != null && !ClassUtils.isAssignable(parameter.getParameterType(), principal.getClass())) {
+                if (annotation.errorOnInvalidType()) {
+                    throw new ClassCastException(principal + " is not assignable to " + parameter.getParameterType());
+                } else {
+                    return null;
+                }
+            } else {
+                return principal;
+            }
         }
-        }else{
-        return principal;
-        }
-        }
-        }
+    }
+}
 ```
 
 1. 해당 메서드의 파라미터에서 @AuthenticationPrincipal 어노테이션이 있는지를 탐색한다.

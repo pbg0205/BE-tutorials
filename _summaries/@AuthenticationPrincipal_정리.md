@@ -1,5 +1,3 @@
-# [zum tech] 게시판 CMS - 파일럿 프로젝트 리뷰A
-
 > 줌인터넷에 신입 개발자의 파일럿 프로젝트에 관한 블로그 글이 있었다.
 > 짧은 기간 작업을 하지만 스프링 공식 문서를 통해서 문제를 해결해나가는 과정이 인상 깊었다.  
 > ***@AuthenticationPrincipal*** 과 @CreatedBy, @Modified를 통해서 인증 객체를 주입한 내용이 좋아서 정리하려고 한다 😃
@@ -10,16 +8,15 @@
 
 ### 1.  **@AuthenticationPrincipal??**
 
-[**[spring.io]
-@AuthenticationPrincipal**](https://docs.spring.io/spring-security/reference/servlet/integrations/mvc.html#mvc-authentication-principal)
-> **
-> @AuthenticationPrincipal [[spring docs](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/annotation/AuthenticationPrincipal.html)]** :
+[[spring.io]
+@AuthenticationPrincipal](https://docs.spring.io/spring-security/reference/servlet/integrations/mvc.html#mvc-authentication-principal)
+> @AuthenticationPrincipal [[spring docs](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/annotation/AuthenticationPrincipal.html)] :
 > Annotation that is used to
 > resolve [Authentication.getPrincipal()](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/Authentication.html#getPrincipal())
 > to a method argument.
 
 - **Authentication.getPrincipal**
-  을 **[Resolver](https://www.notion.so/zum-tech-CMS-A-3e8e9fdcfa5a4fe1a7562ec71affd2dd)**를 거쳐 **method argument** 로 데이터를
+  을 [Resolver](https://www.notion.so/zum-tech-CMS-A-3e8e9fdcfa5a4fe1a7562ec71affd2dd)를 거쳐 **method argument** 로 데이터를
   주입한다.
 - **@AuthenticationPrincipal** 을 선언하면 **AuthenticationPrincipalArgumentResolver**을 통해 자동으로 Prinicipal 의 하위 객체를 주입해준다.
 
@@ -42,7 +39,7 @@ public ResponseEntity updateComment(@RequestBody @Valid CommentUpdateRequestDto 
 
 - 파라미터 지정 변수들을 annotation 이나 type 에 데이터를 주입하는 역할을 담당하는 컴포넌트. 대표적인 예로 **HandlerMethodArgumentResolver** 가
   있다. `Controller`의 `Argument(Parameter)`에 지정된 변수들을 Resolver 를 거쳐 실제 데이터를 주입시켜 준다.
--
+
 참고 : ****[[Spring] Resolver 란? Resolver 구현하기(HandlerMethodArgumentResolver)](https://velog.io/@gillog/Spring-HandlerMethodArgumentResolver-PathVariable-RequestHeader-RequestParam)****
 
 ---

@@ -106,6 +106,7 @@ public class MemberBean implements InitializingBean, DisposableBean, BeanNameAwa
 - Spring Context 가 초기화가 완료되고 이후 로직을 실행하기 위해 이 접근 방식을 사용한다.
 - tomcat 이 실행된 이후에 ApplicationListener.onApplicationEvent(ContextRefreshedEvent event) 메서드를 실행한다.
 - 해당 메서드의 이벤트는 **@EventListener** 를 통해서 전달받아 동작한다.
+- context 가 모두 초기화가 완료된 상태이기 때문에 컨텍스트 실행 후, 추가할 데이터를 넣어도 좋을 것 같다.  
 
 ![image](https://user-images.githubusercontent.com/48561660/206900059-da2e8dca-d6f3-49d6-a89b-1e5167e2985d.png)
 

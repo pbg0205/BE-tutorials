@@ -47,6 +47,11 @@ public @interface Longitude {
 }
 
 ```
+- **message** : 제약 조건을 위반 시 제공하는 default 오류 메세지 속성.
+  - {} 사용하여 MessageSource 를 사용 가능
+  - ${} 를 사용하여 EL 사용 가능
+- **groups** : validation 그룹을 지정하는 속성. (참고. [[baeldung] javax-validation-groups](https://www.baeldung.com/javax-validation-groups))
+- **payload** : 사용자가 추가 정보를 전달할 수 있는 값으로 주로 심각도를 나타날 때 사용.
 
 <br>
 

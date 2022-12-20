@@ -79,7 +79,6 @@ public interface JsonPlaceHolderClient {
 1. 제한 시간 (timeout)
 2. 시도 횟수 (retrial)
 3. 로깅 (logging)
-- 참고할만한 내용들 : 
 
 <br>
 

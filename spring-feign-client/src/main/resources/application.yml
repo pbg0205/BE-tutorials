@@ -1,0 +1,16 @@
+logging:
+  level:
+    org.springframework.cloud: trace
+    com.example.springfeignclient: debug
+
+request:
+  server:
+    url: http://localhost:8080
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic

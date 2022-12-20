@@ -31,6 +31,7 @@ public class FeignClientConfig {
     /**
      * - @ref : https://mangkyu.tistory.com/279
      * - Retryer 을 사용하면 period, timeout 을 설정할 수 있음.
+     * - Retryer.Default() : period : 1ms, max period : 1sec, maxAttempt : 5sec
      */
     @Bean
     Retryer retryer() {

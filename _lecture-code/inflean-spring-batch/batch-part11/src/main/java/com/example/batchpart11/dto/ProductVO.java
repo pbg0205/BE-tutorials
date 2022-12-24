@@ -1,10 +1,11 @@
 package com.example.batchpart11.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Builder
 public class ProductVO {
 
     private Long id;

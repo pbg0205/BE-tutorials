@@ -2,7 +2,7 @@ package com.example.batchpart11.job.file;
 
 import com.example.batchpart11.domain.Product;
 import com.example.batchpart11.dto.ProductVO;
-import com.example.batchpart11.job.chunk.processor.FileItemProcessor;
+import com.example.batchpart11.chunk.processor.FileItemProcessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;

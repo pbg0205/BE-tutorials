@@ -1,4 +1,4 @@
-package com.example.batchpart11.job.chunk.processor;
+package com.example.batchpart11.chunk.processor;
 
 import com.example.batchpart11.domain.Product;
 import com.example.batchpart11.dto.ProductVO;

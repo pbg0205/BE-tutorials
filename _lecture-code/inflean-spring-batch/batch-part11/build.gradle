@@ -19,12 +19,11 @@ repositories {
 }
 
 dependencies {
+    // spring dependencies
     implementation 'org.springframework.boot:spring-boot-starter-batch'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-quartz'
-
-    // http 통신을 위한 dependency 필요 : FeignClient 사용 예정
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -35,6 +34,11 @@ dependencies {
     implementation 'com.h2database:h2:2.1.214'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
+    // mapstruct
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
+    // http 통신을 위한 dependency 필요 : FeignClient 사용 예정
 }
 
 tasks.named('test') {

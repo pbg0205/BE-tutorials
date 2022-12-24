@@ -41,7 +41,7 @@ public class FileJobConfiguration {
                 .name("flatFile")
                 .resource(new ClassPathResource("product_" + requestDate + ".csv"))
                 .fieldSetMapper(new BeanWrapperFieldSetMapper<>())
-                .targetType(ProductVO.class)
+                .targetType(ProductVO.class) // csv file 로 부터 변환할 객체 타입을 지정한다.
                 .linesToSkip(1)
                 .delimited().delimiter(",")
                 .names("id", "name", "price", "type")
@@ -58,7 +58,7 @@ public class FileJobConfiguration {
     @Bean
     public Step fileStep1() {
         return stepBuilderFactory.get("fileStep1")
-                .<ProductVO, Product>chunk(CHUNK_SIZE)
+                .<ProductVO, Product>chunk(CHUNK_SIZE) // chunk size : 한번 동작할 떄 전달하는 데이터 양을 의미
                 .reader(fileItemReader(null))
                 .processor(fileItemProcessor())
                 .writer(fileItemWriter())

@@ -28,25 +28,9 @@ import javax.persistence.EntityManagerFactory;
 @RequiredArgsConstructor
 public class FileJobConfiguration {
 
-    private static final int CHUNK_SIZE = 10;
-
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final EntityManagerFactory entityManagerFactory;
-
-    @Bean
-    @StepScope
-    public FlatFileItemReader<ProductVO> fileItemReader(@Value("#{jobParameters['requestDate']}") String requestDate) {
-        return new FlatFileItemReaderBuilder<ProductVO>()
-                .name("flatFile")
-                .resource(new ClassPathResource("product_" + requestDate + ".csv"))
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<>())
-                .targetType(ProductVO.class) // csv file 로 부터 변환할 객체 타입을 지정한다.
-                .linesToSkip(1)
-                .delimited().delimiter(",")
-                .names("id", "name", "price", "type")
-                .build();
-    }
 
     @Bean
     public Job fileJob() {
@@ -58,10 +42,24 @@ public class FileJobConfiguration {
     @Bean
     public Step fileStep1() {
         return stepBuilderFactory.get("fileStep1")
-                .<ProductVO, Product>chunk(CHUNK_SIZE) // chunk size : 한번 동작할 떄 전달하는 데이터 양을 의미
+                .<ProductVO, Product>chunk(10)
                 .reader(fileItemReader(null))
                 .processor(fileItemProcessor())
                 .writer(fileItemWriter())
+                .build();
+    }
+
+    @Bean
+    @StepScope
+    public FlatFileItemReader<ProductVO> fileItemReader(@Value("#{jobParameters['requestDate']}") String requestDate) {
+        return new FlatFileItemReaderBuilder<ProductVO>()
+                .name("flatFile")
+                .resource(new ClassPathResource("product_" + requestDate +".csv"))
+                .fieldSetMapper(new BeanWrapperFieldSetMapper<>())
+                .targetType(ProductVO.class)
+                .linesToSkip(1)
+                .delimited().delimiter(",")
+                .names("id","name","price","type")
                 .build();
     }
 

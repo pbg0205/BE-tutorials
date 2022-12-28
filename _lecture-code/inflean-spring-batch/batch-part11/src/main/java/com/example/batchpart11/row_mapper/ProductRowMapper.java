@@ -1,7 +1,6 @@
 package com.example.batchpart11.row_mapper;
 
 import com.example.batchpart11.dto.ProductVO;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

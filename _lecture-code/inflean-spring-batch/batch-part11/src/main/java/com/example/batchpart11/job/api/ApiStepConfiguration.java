@@ -41,10 +41,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ApiStepConfiguration {
 
+    private static final int CHUNK_SIZE = 10;
+
     private final StepBuilderFactory stepBuilderFactory;
     private final DataSource dataSource;
-
-    private int chunkSize = 10;
 
     @Bean
     public Step apiMasterStep() throws Exception {
@@ -71,9 +71,8 @@ public class ApiStepConfiguration {
 
     @Bean
     public Step apiSlaveStep() throws Exception {
-
         return stepBuilderFactory.get("apiSlaveStep")
-                .<ProductVO, ProductVO>chunk(chunkSize)
+                .<ProductVO, ProductVO>chunk(CHUNK_SIZE)
                 .reader(itemReader(null))
                 .processor(itemProcessor())
                 .writer(itemWriter())
@@ -94,7 +93,7 @@ public class ApiStepConfiguration {
         JdbcPagingItemReader<ProductVO> reader = new JdbcPagingItemReader<>();
 
         reader.setDataSource(dataSource);
-        reader.setPageSize(chunkSize);
+        reader.setPageSize(CHUNK_SIZE);
         reader.setRowMapper(new BeanPropertyRowMapper(ProductVO.class));
 
         MySqlPagingQueryProvider queryProvider = new MySqlPagingQueryProvider();
@@ -150,4 +149,5 @@ public class ApiStepConfiguration {
 
         return writer;
     }
+
 }

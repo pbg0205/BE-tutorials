@@ -1,5 +1,6 @@
 package com.example.springflyway.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +14,9 @@ public class Member {
     private Long id;
 
     private String name;
+
+    @Column(length = 50)
+    private String phoneNumber;
 
     protected Member() {
     }

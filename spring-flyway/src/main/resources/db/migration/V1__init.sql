@@ -1,3 +1,5 @@
+USE `cooper_db`;
+
 drop table if exists member;
 
 create table member (
@@ -5,4 +7,4 @@ create table member (
     name varchar(255),
 
     primary key (id)
-)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -6,6 +6,8 @@ services:
     container_name: flyway_practice_db
     ports:
       - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 'cooper2021'
       MYSQL_DATABASE: cooper_db

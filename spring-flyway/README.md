@@ -1,10 +1,4 @@
-# flyway
-
-## 프로젝트 환경
-
-- Java 11
-- MySQL 8.0
-- SpringBoot
+# spring-flyway
 
 ## flyway 를 사용하는 이유
 
@@ -13,6 +7,7 @@
    - 운영 환경에서 craete, create-drop 을 사용하면 운영환경의 DB 가 날라간다.. update 를 사용하는 것도 스키마 변겨엥 관한 추적이 어려워 권장하지 않는 사항인 것으로 알고 있다.
 3. 이 때, DB 형상관리 도구를 사용하면 스키마 버전 관리 및 변경 사항을 추적할 수 있어 쉽고 안전하게 변경이 가능하다.
 
+(참고 : [[Tecoble] Flyway](https://tecoble.techcourse.co.kr/post/2021-10-23-flyway/)) 
 <br>
 
 ## Naming

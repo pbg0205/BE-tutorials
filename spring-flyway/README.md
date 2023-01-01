@@ -88,7 +88,7 @@ spring:
    - spring 에서 flyway 를 사용할지 여부를 결정하는 프로퍼티
    - default value : true
    
-2`spring.flyway.baseline-on-migrate`
+2. `spring.flyway.baseline-on-migrate`
    - 기존 테이블 정보, 데이터는 있고 `flyway_schema_history` 테이블에는 없는 경우에 주로 사용한다.
    - 기존에 database 가 존재하는 상황에서 도중에 Flyway 를 도입할 떄 유용하게 사용된다.
      - 프로젝트 도중에 flyway를 적용하는 방법 (ref: [Flyway DB 마이그레이션 / 기존 데이터가 있는 상황에서 Flyway 적용하기](https://www.blog.ecsimsw.com/entry/Flyway-DB-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%EA%B8%B0%EC%A1%B4-%EB%8D%B0%EC%9D%B4%ED%84%B0%EA%B0%80-%EC%9E%88%EB%8A%94-%EA%B2%BD%EC%9A%B0))

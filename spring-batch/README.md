@@ -13,7 +13,7 @@
 ## Spring Batch
 
 - Accenture 과 Spring Source 공동 작업을 통해 만들어진 배치 처리 프레임워크 이다.
-- Spring Batch 는 Spring 에서 제공하는 기술과 연과지어 다양한 기능을 제공한다.
+- Spring Batch 는 Spring 에서 제공하는 기술과 연관지어 다양한 기능을 제공한다.
 - Spring Quartz 는 스케줄링을 지원하는 역할이며, Spring Batch 를 상호 보완하는 역할을 한다.
     (주로 Qautz + Batch 조합을 사용한다)
 

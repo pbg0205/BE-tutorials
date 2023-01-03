@@ -29,6 +29,36 @@
 
 <br>
 
+## Spring Batch Domain
+
+1. `Job`
+   - 배치 계층 구조에서 가장 상위에 있는 개념으로서 하나의 배치작업 자체를 의미함.
+2. `JobInstance`
+   1. Job 이 실행될 때 생성되는 Job 의 논리적인 실행 단위 객체이다. (Job : JobInstance = 1:M)
+   2. 내부적으로 JobName + jobKey (jobParametes 의 해시값) 를 가지고  JobInstance 객체를 생성한다.
+   3. JOB_NAME (Job) 과 JOB_KEY (JobParameter 해시값) 가 동일한 데이터는 중복해서 저장할 수 없다.
+3. `JobParameter`
+   1. Job 을 실행할 때 함께 포함되어 사용되는 파라미터이다.
+   2. 하나의 Job 에 존재할 수 있는 여러개의 JobInstance 를 구분하기 위한 용도로 사용한다.
+   3. 어플리케이션, 드로 생성, SpEL 통해서 생성한다.
+   4. JOB_EXECUTION_PARAM 과 1:M 관계이다. (JOB_EXECUTION_PARAM : JobParameter = 1: M) 
+4. `JobExecution`
+   1. JobInstance 에 대한 한번의 시도를 의미하는 객체로 Job 실행 중에 발생한 정보들을 저장하고 있는 객체
+   2. Job 의 실행 정보가 저장되며 Job 생성, 시작, 종료 시간,  실행 상태, 메시지 등을 관리한다.
+   3. JobInstance 와 JobExecution 관계
+      1. FAILED : 실행이 완료되지 않은 상태이며 재실행이 가능하다.
+      2. COMPLETED : JobInstance 가 완료된 상태이며 재실행이 불가능하다.
+      - Job parameter 가 동일한 값으로 Job 을 실행할지라도 JobInstance 는 계속 실행 가능
+   4. JobInstance 와 JobExecution 는 1:M 의 관계로서 JobInstance 에 대한 성공/실패의 내역을 가지고 있다.
+5. Step
+6. StepExecution
+7. StepContribution
+8. ExecutionContext
+9. JobRepository
+10. JobLauncher
+
+<br>
+
 ## Spring Batch Metadata tables
 
 ![spring batch meta tables](images/meta_data_schema.png)

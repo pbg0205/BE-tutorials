@@ -29,6 +29,28 @@
 
 <br>
 
+## Spring Batch Metadata tables
+
+![spring batch meta tables](images/meta_data_schema.png)
+
+1. 스프링 배치 메타 데이터는 배치 작업에 관한 정보와 이력을 관리하는 테이블이다.  
+2. 스프링 배치는 메타 테이블이 있어야 동작한다.
+   - [메타 데이터](https://getliner.com/picked-by-liner/reader-mode?url=https%3A%2F%2Fko.wikipedia.org%2Fwiki%2F%25EB%25A9%2594%25ED%2583%2580%25EB%258D%25B0%25EC%259D%25B4%25ED%2584%25B0) : 어떤 목적을 가지고 만들어진 데이터
+   - H2 는 어플리케이션이 실행할 때 자동으로 생성하지만, MySQL 은 개발자가 직접 생성해야 한다.
+   - spring batch schema 는 `org.springframework.batch.core` 패키지 내부에 선언되어 있다. (e.g. schema-mysql.sql)
+3. 스프링 배치 메타 테이블 종류
+   1. `BATCH_JOB_INSTANCE`
+      - Job Parameter 에 따라 생성되는 테이블이다. 
+        - Job Parameter : Spring Batch 가 실행될 때 외부에서 전달받은 파라미터이다. 만약 Job Parameter 가 같다면 기록되지 않는다.
+      - Job 이 실행될 때, JobInstance 정보가 저장되며, job_name 과 job_key 를 키로 하여 하나의 데이터를 저장한다.
+   2. `BATCH_JOB_EXECUTION`
+      - JOB_INSTACNE 가 성공/실패에 관한 모든 내역을 관리하는 테이블이다.
+      - JOB_EXECUTION 와 JOB_INSTANCE 는 부모-자식 관계이다.
+      - SpringBatch 는 동일한 Job Parameter 로 성공한 기록이 있을 때만 재수행되지 않는다.
+   3. `BATCH_JOB_EXECUTION_PARAMS`
+   4. `BATCH_JOB_EXECUTION_CONTEXT` 
+   5. `BATCH_STEP_EXECUTION` 
+   6. `BATCH_STEP_EXECUTION_CONTEXT` 
 
 ## References
 

@@ -51,7 +51,18 @@
       - Job parameter 가 동일한 값으로 Job 을 실행할지라도 JobInstance 는 계속 실행 가능
    4. JobInstance 와 JobExecution 는 1:M 의 관계로서 JobInstance 에 대한 성공/실패의 내역을 가지고 있다.
 5. Step
+   1. Batch Job 을 구성하는 하나의 단계를 의미한다.
+   2. 실제 배치 처리를 정의하고 컨트롤하는데 필요한 모든 정보를 가진 도메인 객체이다.
+   3. Job 은 하나 이상의 Step 으로 구성된다.
+   4. 구현체로는 TaskletStep, PartitionStep, JobStep, JobStep 가 있다.
 6. StepExecution
+   1. Step 에 대한 한번의 시도를 의미하는 객체이다.
+   2. Step 실행 중에 발생한 정보들을 저장한다.
+   3. Job 이 재시작 하더라도 이미 성공적으로 완료된 Step 은 재 실행되지 않고 실패한 Step 만 실행된다.
+   4. 이전 단계 Step 이 실패해서 현재 Step을 실행하지 않았다면 StepExecution 을 생성하지 않는다.
+   5. JobExecution 과의 관계
+      1. Step의 StepExecution 이 모두 정상적으로 완료 되어야 JobExecution이 정상적으로 완료된다.
+      2. Step의 StepExecution 중 하나라도 실패하면 JobExecution 은 실패한다.
 7. StepContribution
 8. ExecutionContext
 9. JobRepository

@@ -35,7 +35,7 @@
    - 배치 계층 구조에서 가장 상위에 있는 개념으로서 하나의 배치작업 자체를 의미함.
 2. `JobInstance`
    1. Job 이 실행될 때 생성되는 Job 의 논리적인 실행 단위 객체이다. (Job : JobInstance = 1:M)
-   2. 내부적으로 JobName + jobKey (jobParametes 의 해시값) 를 가지고  JobInstance 객체를 생성한다.
+   2. 내부적으로 JobName + jobKey (JobParameters 의 해시값) 를 가지고  JobInstance 객체를 생성한다.
    3. JOB_NAME (Job) 과 JOB_KEY (JobParameter 해시값) 가 동일한 데이터는 중복해서 저장할 수 없다.
 3. `JobParameter`
    1. Job 을 실행할 때 함께 포함되어 사용되는 파라미터이다.

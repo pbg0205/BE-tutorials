@@ -45,9 +45,10 @@ public class MemberComponent implements InitializingBean, DisposableBean, BeanNa
 
 <br>
 
-### (2) @PostConstruct, @PreDestroy
-- @PostConstruct : 빈 내부 해당 어노테이션 선언 시, 빈 초기화 이후 해당 메서드 동작
-- @PreDestroy : 빈 내부 해당 어노테이션 선언 시, 빈 소멸 이전 해당 메서드 동작
+## 2. @PostConstruct, @PreDestroy
+- `@PostConstruct` : 빈 내부 해당 어노테이션 선언 시, 빈 초기화 이후 해당 메서드 동작
+- `@PreDestroy` : 빈 내부 해당 어노테이션 선언 시, 빈 소멸 이전 해당 메서드 동작
+
 ```java
 @Log4j2
 @Component
@@ -145,6 +146,34 @@ public class EventListenerExampleBean {
 
 <br>
 
-## References
+### References
 
 - [baeldung] Guide To Running Logic on Startup in Spring : https://www.baeldung.com/running-setup-logic-on-startup-in-spring
+
+
+## 2. Internationalization (i18n)
+
+- internalization
+  - 소스 코드의 변경없이 다국어 언어를 지원하는 것을 말한다.
+  - 다국어 메세지는 어플리케이션 외부에서 관리되며 런타임 시에 추가된다.  
+  - 날짜 및 통화와 관련된 데이터는 최종 사용자의 지역 및 언어 형식으로 표시된다.
+- localization
+  - 지역별 텍스트 또는 구성 요소를 추가하여 국제화된 어플리케이션 특정 언어 및 지역에 맞게 조정하는 프로세스를 말한다.
+  - 새로운 언어에 대한 지원을 추가할 때마다 언어 파일과 지역별 콘텐츠를 추가하는 프로세스이다.
+
+### (1) LocaleResolver
+
+- locale 설정을 지원하는 **org.springframework.web.servlet** 패키지에 위치한 인터페이스이다.
+- locale 은 accept-language header, cookie, session 등을 통해 locale 을 설정한다.
+    - **LocaleResolver interface** 의 기본 구현체는 `AcceptHeaderLocaleResolver` 이다. 
+      해당 Resolver 는  **accept-language** header 를 통해서 locale 을 설정하는 resolver 이다.
+
+<br>
+
+[추가 샘플 코드 필요]
+
+- Locale 을 세션에 추가했을 때 session 만료 시간을 설정하는 방법?
+
+## References
+
+- [[reflectoring] How to Internationalize a Spring Boot Application](https://reflectoring.io/spring-boot-internationalization/)

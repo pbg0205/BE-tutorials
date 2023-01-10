@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: cooper_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'cooper2021'
+      MYSQL_DATABASE: cooper_db
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+  redis:
+    container_name: redis-practice
+    image: redis
+    ports:
+      - "6379:6379"

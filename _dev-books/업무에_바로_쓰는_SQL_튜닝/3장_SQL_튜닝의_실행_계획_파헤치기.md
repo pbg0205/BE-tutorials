@@ -44,6 +44,6 @@ mysql:8.0 \
    show tables; # 급여, 부서, 부서관리자, 부서사원_매핑, 사원, 사원출입기록, 직급
    ```
 5. 테이블 확인
-   ![img.png](/images/img01.png)
+   ![img.png](../images/img01.png)
 
 <br>

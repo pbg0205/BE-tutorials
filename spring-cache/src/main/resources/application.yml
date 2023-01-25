@@ -1,0 +1,38 @@
+
+spring:
+  config:
+    activate:
+      on-profile: mysql-local
+--- # spring data jpa config
+
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://localhost:3306/cooper_cache_db
+    username: root
+    password: cooper2021
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+--- # logging config
+
+
+logging:
+  level:
+    org.springframework.batch: debug
+    com.cooper.springcache: debug
+
+--- # spring cache config
+
+spring:
+  cache:
+    cache-names: "cache1,cache2"
+    redis:
+      time-to-live: "10m"
+
+---

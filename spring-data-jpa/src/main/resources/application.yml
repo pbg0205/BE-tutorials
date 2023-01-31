@@ -9,7 +9,7 @@ spring:
       properties:
         hibernate:
           query:
-            in_clause_parameter_padding: true # 2? ?? ??? padding ?? ??
+            in_clause_parameter_padding: true # 2^n padding option
     open-in-view: false
     hibernate:
       ddl-auto: create-drop

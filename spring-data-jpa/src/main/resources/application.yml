@@ -5,11 +5,10 @@ spring:
   jpa:
     show-sql: true
     properties:
-      hibernate.format_sql: true
-      properties:
-        hibernate:
-          query:
-            in_clause_parameter_padding: true # 2^n padding option
+      hibernate:
+        format_sql: true
+        query:
+          in_clause_parameter_padding: true # 2^n padding option
     open-in-view: false
     hibernate:
       ddl-auto: create-drop

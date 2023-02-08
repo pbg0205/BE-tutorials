@@ -1,4 +1,4 @@
-package com.cooper.concurrent;
+package com.cooper.concurrency.java5;
 
 import org.junit.jupiter.api.Test;
 

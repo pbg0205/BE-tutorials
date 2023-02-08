@@ -1,4 +1,4 @@
-package com.cooper.concurrent;
+package com.cooper.concurrency.java5;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,8 @@ import java.util.concurrent.Executors;
  *
  * @reference https://mangkyu.tistory.com/259
  */
-public class CallableTest {
+public class
+CallableTest {
 
     @Test
     void callable_void() {

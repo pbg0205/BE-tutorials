@@ -8,5 +8,6 @@ import lombok.RequiredArgsConstructor;
 public class PromotionCreateResponse {
 
     private final String promotionName;
+    private final Long ticketMaxLimit;
 
 }

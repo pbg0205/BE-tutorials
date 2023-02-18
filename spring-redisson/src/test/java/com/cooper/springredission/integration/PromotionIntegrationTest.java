@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class PromotionIntegrationTest {
 
@@ -35,7 +35,7 @@ public class PromotionIntegrationTest {
     @DisplayName("프로모션 생성 api 테스트")
     void createPromotion() throws Exception {
         //given
-        PromotionCreateRequest promotionCreateRequest = new PromotionCreateRequest("2022 cooper concert");
+        PromotionCreateRequest promotionCreateRequest = new PromotionCreateRequest("2022 cooper concert", 100L);
         String requestBody = objectMapper.writeValueAsString(promotionCreateRequest);
 
         //when, then
@@ -46,7 +46,8 @@ public class PromotionIntegrationTest {
                 .andExpectAll(
                         status().isOk(),
                         content().contentType(MediaType.APPLICATION_JSON),
-                        jsonPath("$.promotionName").value("2022 cooper concert"))
+                        jsonPath("$.promotionName").value("2022 cooper concert"),
+                        jsonPath("$.ticketMaxLimit").value("100"))
                 .andDo(print());
     }
 
@@ -54,7 +55,7 @@ public class PromotionIntegrationTest {
     @DisplayName("티켓 생성 api 테스트")
     void createTicket() throws Exception {
         //given
-        Promotion promotion = promotionRepository.save(new Promotion("2022 cooper concert"));
+        Promotion promotion = promotionRepository.save(new Promotion("2022 cooper concert", 100L));
 
         //when
         mockMvc.perform(post("/api/v1/promotions/{promotionId}/ticket", promotion.getId())

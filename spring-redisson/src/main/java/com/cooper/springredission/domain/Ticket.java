@@ -25,11 +25,11 @@ public class Ticket {
     private Long price;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "promotion_id")
     @Setter
     private Promotion promotion;
 
-    public Ticket(Long price) {
+    public Ticket(final Long price) {
         this.price = price;
     }
 

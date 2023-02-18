@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class PromotionCreateRequest {
 
     private String promotionName;
+    private Long ticketMaxLimit;
 
 }

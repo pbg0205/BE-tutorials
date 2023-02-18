@@ -30,13 +30,25 @@ public class Promotion {
     @OneToMany(mappedBy = "promotion", cascade = {CascadeType.ALL})
     private List<Ticket> tickets = new ArrayList<>();
 
-    public Promotion(String name) {
+    @Column(length = 20, nullable = false)
+    private Long ticketMaxLimit;
+
+    public Promotion(final String name, final Long ticketMaxLimit) {
         this.name = name;
+        this.ticketMaxLimit = ticketMaxLimit;
     }
 
-    public void addTicket(Ticket ticket) {
+    public void addTicket(final Ticket ticket) {
         tickets.add(ticket);
         ticket.setPromotion(this);
+    }
+
+    public boolean isClosed() {
+        return tickets.size() >= ticketMaxLimit;
+    }
+
+    public int getTicketSize() {
+        return this.tickets.size();
     }
 
 }

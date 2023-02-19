@@ -17,7 +17,7 @@ import java.util.concurrent.Executors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-class RedissonPromotionServiceTest {
+class SimplePromotionServiceTest {
 
     @Autowired
     private PromotionService promotionService;

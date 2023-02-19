@@ -15,5 +15,5 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 logging:
   level:
-    com.cooper.com.cooper.springredission: debug
+    com.cooper.com.cooper.springredisson: debug
 ---

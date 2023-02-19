@@ -7,42 +7,18 @@ import com.cooper.springredission.dto.PromotionCreateRequest;
 import com.cooper.springredission.dto.PromotionCreateResponse;
 import com.cooper.springredission.dto.TicketCreateResponse;
 import lombok.RequiredArgsConstructor;
-import org.redisson.api.RLock;
-import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.concurrent.TimeUnit;
-
 @Service
 @RequiredArgsConstructor
-public class RedissonPromotionService implements PromotionService {
+public class SimplePromotionService implements PromotionService {
 
     private final PromotionRepository promotionRepository;
-    private final RedissonClient redissonClient;
 
     @Override
     @Transactional
     public TicketCreateResponse createTicket(final Long promotionId) {
-        String key = "cooper";
-        RLock lock = redissonClient.getLock(key);
-
-        try {
-            boolean available = lock.tryLock(5, 1, TimeUnit.SECONDS);
-            if (!available) {
-                throw new RuntimeException("lock 획득 실패");
-            }
-
-            return createTicketWithPromotionId(promotionId);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } finally {
-            lock.unlock();
-        }
-
-    }
-
-    private TicketCreateResponse createTicketWithPromotionId(Long promotionId) {
         Promotion promotion = promotionRepository.findById(promotionId)
                 .orElseThrow(() -> new RuntimeException("promotion id not found"));
 

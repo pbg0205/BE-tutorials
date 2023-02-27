@@ -22,4 +22,12 @@ public class StudentRepositoryImpl implements StudentRepositoryCustom {
                 .fetch();
     }
 
+    @Override
+    public void updateStudentName(String tagName, String updateName) {
+        jpaQueryFactory.update(student)
+                .set(student.name, updateName)
+                .where(student.tagName.eq(tagName))
+                .execute();
+    }
+
 }

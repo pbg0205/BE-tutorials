@@ -6,4 +6,6 @@ public interface StudentRepositoryCustom {
 
     List<Student> findByAwardName(final Long studentId);
 
+    void updateStudentName(String tagName, String updateName);
+
 }

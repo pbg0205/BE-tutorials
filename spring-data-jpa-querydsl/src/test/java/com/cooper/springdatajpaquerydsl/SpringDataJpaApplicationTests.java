@@ -1,4 +1,4 @@
-package com.cooper.springdatajpa;
+package com.cooper.springdatajpaquerydsl;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

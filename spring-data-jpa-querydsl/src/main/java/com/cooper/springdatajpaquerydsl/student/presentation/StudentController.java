@@ -1,7 +1,7 @@
-package com.cooper.springdatajpa.student.presentation;
+package com.cooper.springdatajpaquerydsl.student.presentation;
 
-import com.cooper.springdatajpa.student.business.StudentService;
-import com.cooper.springdatajpa.student.domain.Student;
+import com.cooper.springdatajpaquerydsl.student.business.StudentService;
+import com.cooper.springdatajpaquerydsl.student.domain.Student;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

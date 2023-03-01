@@ -1,7 +1,7 @@
-package com.cooper.springdatajpa.student.business;
+package com.cooper.springdatajpaquerydsl.student.business;
 
-import com.cooper.springdatajpa.student.domain.Student;
-import com.cooper.springdatajpa.student.domain.StudentRepository;
+import com.cooper.springdatajpaquerydsl.student.domain.Student;
+import com.cooper.springdatajpaquerydsl.student.domain.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

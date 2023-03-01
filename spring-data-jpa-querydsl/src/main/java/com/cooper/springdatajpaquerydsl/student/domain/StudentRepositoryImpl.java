@@ -1,12 +1,12 @@
-package com.cooper.springdatajpa.student.domain;
+package com.cooper.springdatajpaquerydsl.student.domain;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-import static com.cooper.springdatajpa.student.domain.QAward.award;
-import static com.cooper.springdatajpa.student.domain.QStudent.student;
+import static com.cooper.springdatajpaquerydsl.student.domain.QAward.award;
+import static com.cooper.springdatajpaquerydsl.student.domain.QStudent.student;
 
 @RequiredArgsConstructor
 public class StudentRepositoryImpl implements StudentRepositoryCustom {

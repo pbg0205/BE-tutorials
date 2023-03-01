@@ -1,4 +1,4 @@
-package com.cooper.springdatajpa.common.config;
+package com.cooper.springdatajpaquerydsl.common.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;

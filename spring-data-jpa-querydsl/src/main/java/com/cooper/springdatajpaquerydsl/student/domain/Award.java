@@ -1,4 +1,4 @@
-package com.cooper.springdatajpa.student.domain;
+package com.cooper.springdatajpaquerydsl.student.domain;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

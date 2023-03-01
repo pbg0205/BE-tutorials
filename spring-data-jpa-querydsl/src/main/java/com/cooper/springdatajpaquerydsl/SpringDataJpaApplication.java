@@ -1,4 +1,4 @@
-package com.cooper.springdatajpa;
+package com.cooper.springdatajpaquerydsl;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

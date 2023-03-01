@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+docker/student_mysql
+docker/teacher_mysql

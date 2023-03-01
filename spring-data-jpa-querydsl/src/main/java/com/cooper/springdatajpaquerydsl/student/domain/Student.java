@@ -1,6 +1,7 @@
 package com.cooper.springdatajpaquerydsl.student.domain;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -33,6 +34,12 @@ public class Student {
     private List<Award> awards = new ArrayList<>();
 
     public Student(String name, String tagName) {
+        this.name = name;
+        this.tagName = tagName;
+    }
+
+    public Student(Long id, String name, String tagName) {
+        this.id = id;
         this.name = name;
         this.tagName = tagName;
     }

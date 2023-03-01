@@ -44,10 +44,10 @@ class StudentRepositoryTest {
 		//when
 		studentRepository.updateStudentName("태그1", "update student");
 
-		Student findStudent1 = jdbcTemplate.queryForObject("select * from student where id = ?", new Object[]{student1.getId()}, new StudentRowMapper());
-		Student findStudent2 = jdbcTemplate.queryForObject("select * from student where id = ?", new Object[]{student2.getId()}, new StudentRowMapper());
-		Student findStudent3 = jdbcTemplate.queryForObject("select * from student where id = ?", new Object[]{student3.getId()}, new StudentRowMapper());
-		Student findStudent4 = jdbcTemplate.queryForObject("select * from student where id = ?", new Object[]{student4.getId()}, new StudentRowMapper());
+		Student findStudent1 = jdbcTemplate.queryForObject("select * from student where id = ?", new StudentRowMapper(), student1.getId());
+		Student findStudent2 = jdbcTemplate.queryForObject("select * from student where id = ?", new StudentRowMapper(), student2.getId());
+		Student findStudent3 = jdbcTemplate.queryForObject("select * from student where id = ?", new StudentRowMapper(), student3.getId());
+		Student findStudent4 = jdbcTemplate.queryForObject("select * from student where id = ?", new StudentRowMapper(), student4.getId());
 
 		assert findStudent1.getName().equals("update student");
 		assert findStudent2.getName().equals("update student");

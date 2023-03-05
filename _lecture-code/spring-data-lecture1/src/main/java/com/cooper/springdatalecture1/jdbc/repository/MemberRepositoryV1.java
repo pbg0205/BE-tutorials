@@ -1,18 +1,28 @@
 package com.cooper.springdatalecture1.jdbc.repository;
 
-import com.cooper.springdatalecture1.jdbc.connection.DBConnectionUtil;
 import com.cooper.springdatalecture1.jdbc.domain.Member;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
+
+/**
+ * JDBC - DataSource 사용, JdbcUtils 사용
+ *
+ */
 @Slf4j
-public class MemberRepositoryV0 {
+@RequiredArgsConstructor
+public class MemberRepositoryV1 {
+
+    private final DataSource dataSource;
 
     public Member save(Member member) throws SQLException {
         String sql = "insert into member(member_id, money) values (?, ?)";
@@ -29,6 +39,10 @@ public class MemberRepositoryV0 {
         } catch (SQLException sqlException) {
             log.error("db error", sqlException);
             throw sqlException;
+        } finally {
+//            JdbcUtils.closeResultSet(resultSet);
+//            JdbcUtils.closeStatement(statement);
+//            JdbcUtils.closeConnection(connection);
         }
     }
 
@@ -54,6 +68,10 @@ public class MemberRepositoryV0 {
         } catch (SQLException sqlException) {
             log.error("db error", sqlException);
             throw sqlException;
+        } finally {
+//            JdbcUtils.closeResultSet(resultSet);
+//            JdbcUtils.closeStatement(statement);
+//            JdbcUtils.closeConnection(connection);
         }
 
     }
@@ -72,6 +90,11 @@ public class MemberRepositoryV0 {
         } catch (SQLException sqlException) {
             log.error("db error ", sqlException);
             throw sqlException;
+        } finally {
+//            JdbcUtils.closeResultSet(resultSet);
+//            JdbcUtils.closeStatement(statement);
+//            JdbcUtils.closeConnection(connection);
+
         }
 
     }
@@ -90,12 +113,18 @@ public class MemberRepositoryV0 {
         } catch (SQLException sqlException) {
             log.error("db error ", sqlException);
             throw sqlException;
+        } finally {
+//            JdbcUtils.closeResultSet(resultSet);
+//            JdbcUtils.closeStatement(statement);
+//            JdbcUtils.closeConnection(connection);
         }
 
     }
 
     private Connection getConnection() throws SQLException {
-        return DBConnectionUtil.getConnection();
+        Connection connection = dataSource.getConnection();
+        log.info("get connection={}, class={}", connection, connection.getClass());
+        return connection;
     }
 
 }

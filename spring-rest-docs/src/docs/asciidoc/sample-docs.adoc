@@ -1,0 +1,22 @@
+= SAMPLE API
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels:2
+:sectlinks:
+
+== 샘플 단건 조회
+
+=== curl test
+
+include::{snippets}/find-sample/curl-request.adoc[]
+
+=== 요청
+
+include::{snippets}/find-sample/http-request.adoc[]
+include::{snippets}/find-sample/path-parameters.adoc[]
+
+=== 응답
+
+include::{snippets}/find-sample/http-response.adoc[]

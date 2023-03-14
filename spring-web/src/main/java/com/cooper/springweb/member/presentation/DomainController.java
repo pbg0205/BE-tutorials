@@ -11,7 +11,7 @@ public class DomainController {
 
     // locale, domain 정규식 매핑 테스트
     @GetMapping(value = {
-            "{locale:ko|ja|en}/{domain:^(?!version.txt|ko|ja|en)[a-zA-Z0-9.@]*$}",
+            "{locale:ko|ja|en}/{domain:^(?!version.txt)[a-zA-Z0-9.@]*$}",
             "{domain:^(?!version.txt|ko|ja|en)[a-zA-Z0-9.@]*$}",
             "/{locale:ko|ja|en}",
     })

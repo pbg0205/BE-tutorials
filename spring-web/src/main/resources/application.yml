@@ -1,0 +1,7 @@
+spring:
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+logging:
+  level:
+    com.cooper.springweb: debug

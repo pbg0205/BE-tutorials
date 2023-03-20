@@ -21,9 +21,8 @@ public class JedisConfig {
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
-        RedisStandaloneConfiguration redisConnectionConfig = new RedisStandaloneConfiguration(host, port);;
-        JedisClientConfiguration clientConfig = JedisClientConfiguration
-                .builder()
+        RedisStandaloneConfiguration redisConnectionConfig = new RedisStandaloneConfiguration(host, port);
+        JedisClientConfiguration clientConfig = JedisClientConfiguration.builder()
                 .usePooling()
                 .build();
 

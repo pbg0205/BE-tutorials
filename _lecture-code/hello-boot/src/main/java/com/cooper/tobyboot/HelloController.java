@@ -19,6 +19,7 @@ public class HelloController {
     @GetMapping
     @ResponseBody
     public String hello(String name) {
+        if (name == null || name.trim().length() == 0) throw new IllegalArgumentException();
         return simpleHelloService.sayHello(Objects.requireNonNull(name));
     }
 

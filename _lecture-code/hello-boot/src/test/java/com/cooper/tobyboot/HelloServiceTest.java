@@ -1,5 +1,7 @@
 package com.cooper.tobyboot;
 
+import com.cooper.tobyboot.helloboot.HelloDecorator;
+import com.cooper.tobyboot.helloboot.SimpleHelloService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +17,7 @@ public class HelloServiceTest {
 
     @Test
     void helloDecorator() {
-        HelloDecorator decorator = new HelloDecorator( name -> name);
+        HelloDecorator decorator = new HelloDecorator(name -> name);
 
         String ret = decorator.sayHello("Test");
 

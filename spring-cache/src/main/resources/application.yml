@@ -24,7 +24,6 @@ spring:
 
 logging:
   level:
-    org.springframework.batch: debug
     com.cooper.springcache: debug
 
 --- # spring cache config

@@ -1,0 +1,31 @@
+### 학생 생성
+
+POST http://localhost:8080/api/student
+Content-Type: application/json
+
+{
+  "name" : "cooper",
+  "classNumber" : 1
+}
+
+
+### 학생 조회
+
+GET http://localhost:8080/api/student/1
+Content-Type: application/json
+
+### 학생 수정
+
+PUT http://localhost:8080/api/student
+Content-Type: application/json
+
+{
+  "id" : 1,
+  "name" : "modified_cooper",
+  "classNumber" : 2
+}
+
+### 학생 삭제
+
+DELETE http://localhost:8080/api/student/1
+Content-Type: application/json

@@ -10,16 +10,18 @@ spring:
     hibernate:
       ddl-auto: create-drop
   datasource:
-    student:
-      url: jdbc:mysql://localhost:3306/cooper_db
-      username: root
-      password: cooper2021
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    teacher:
-      url: jdbc:mysql://localhost:3306/cooper_db
-      username: root
-      password: cooper2021
-      driver-class-name: com.mysql.cj.jdbc.Driver
+    master:
+      hikari:
+        url: jdbc:mysql://localhost:3306/cooper_db
+        username: root
+        password: cooper2021
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    slave:
+      hikari:
+        url: jdbc:mysql://localhost:3306/cooper_db
+        username: root
+        password: cooper2021
+        driver-class-name: com.mysql.cj.jdbc.Driver
 logging:
   level:
     org.springframework.batch: debug

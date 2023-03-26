@@ -10,9 +10,6 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import javax.sql.DataSource;
@@ -20,7 +17,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@EnableTransactionManagement
 public class DataSourceRoutingConfiguration {
 
     private static final String MASTER_DATA_SOURCE = "masterDataSource";
@@ -54,7 +50,7 @@ public class DataSourceRoutingConfiguration {
     ) {
         RoutingDataSource routingDataSource = new RoutingDataSource();
 
-        Map<Object, Object> dataSourceMap = new HashMap<>();;
+        Map<Object, Object> dataSourceMap = new HashMap<>();
         dataSourceMap.put(MASTER_KEY, masterDataSource);
         dataSourceMap.put(SLAVE_KEY, slaveDataSource);
 
@@ -70,17 +66,6 @@ public class DataSourceRoutingConfiguration {
     public DataSource lazyConnectionDataSourceProxy(
             @Qualifier(ROUTING_DATA_SOURCE) DataSource routingDataSource) {
         return new LazyConnectionDataSourceProxy(routingDataSource);
-    }
-
-    @Primary
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-            @Qualifier(LAZY_CONNECTION_DATA_SOURCE_PROXY) DataSource dataSource) {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        em.setDataSource(dataSource);
-        em.setPackagesToScan("com.cooper.springdatajpamultidatasource.student.domain");
-        return em;
     }
 
     static class RoutingDataSource extends AbstractRoutingDataSource {

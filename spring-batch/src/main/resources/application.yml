@@ -16,3 +16,13 @@ spring:
 logging:
   level:
     org.springframework.batch: debug
+
+---
+
+spring:
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      names: ${job.name:NONE}
+

@@ -1,0 +1,26 @@
+### signup member
+
+POST http://localhost:8080/api/member
+Content-Type: application/json
+
+{
+  "userId" : "cooper",
+  "password" : "password"
+}
+
+### login member
+
+POST http://localhost:8080/api/member/login
+Content-Type: application/json
+
+{
+  "userId" : "cooper",
+  "password" : "password"
+}
+
+
+### access member
+
+GET http://localhost:8080/api/member
+Content-Type: application/json
+Set-Cookie: JSESSIONID=B5D75D643F7E7CD6A67E198AE7821FCA; Path=/; HttpOnly

@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/location")
 @RequiredArgsConstructor
-@Validated
-public class LocationController {
+@Validated // @Validated 일 경우에는 동작
+public class ValidatedLocationController {
 
-    @GetMapping
+    @GetMapping("/validated")
     public ResponseEntity<String> findLocation(
             @RequestParam @Latitude double latitude,
             @RequestParam @Longitude double longitude

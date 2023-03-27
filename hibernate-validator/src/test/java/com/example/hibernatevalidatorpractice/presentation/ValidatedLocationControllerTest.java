@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class LocationControllerTest {
+class ValidatedLocationControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

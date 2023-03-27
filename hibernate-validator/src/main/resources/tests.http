@@ -1,0 +1,53 @@
+# @Validated
+
+### validated latitude, longitude request
+GET http://localhost:8080/api/location/validated?latitude=-50&longitude=-50
+Content-Type: application/json
+
+### invalidated latitude request
+GET http://localhost:8080/api/location/validated?latitude=-91&longitude=50
+Content-Type: application/json
+
+### invalidated longitude request
+GET http://localhost:8080/api/location/validated?latitude=-50&longitude=181
+Content-Type: application/json
+
+### invalidated latitude, longitude request
+GET http://localhost:8080/api/location/validated?latitude=100&longitude=181
+Content-Type: application/json
+
+# Controller @Valid
+
+### valid latitude, longitude request
+GET http://localhost:8080/api/location/controller/valid?latitude=-50&longitude=-50
+Content-Type: application/json
+
+### invalid latitude request
+GET http://localhost:8080/api/location/controller/valid?latitude=-91&longitude=50
+Content-Type: application/json
+
+### invalid longitude request
+GET http://localhost:8080/api/location/controller/valid?latitude=-50&longitude=181
+Content-Type: application/json
+
+### invalid latitude, longitude request
+GET http://localhost:8080/api/location/controller/valid?latitude=100&longitude=181
+Content-Type: application/json
+
+# Service @Valid
+
+### valid latitude, longitude request
+GET http://localhost:8080/api/location/service/valid?latitude=-50&longitude=-50
+Content-Type: application/json
+
+### invalid latitude request
+GET http://localhost:8080/api/location/service/valid?latitude=-91&longitude=50
+Content-Type: application/json
+
+### invalid longitude request
+GET http://localhost:8080/api/location/service/valid?latitude=-50&longitude=181
+Content-Type: application/json
+
+### invalid latitude, longitude request
+GET http://localhost:8080/api/location/service/valid?latitude=100&longitude=181
+Content-Type: application/json

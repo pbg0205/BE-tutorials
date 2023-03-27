@@ -1,15 +1,13 @@
 package com.example.hibernatevalidatorpractice.exception.handler;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 
 @RestControllerAdvice
 public class ValidationExceptionHandler {
@@ -22,6 +20,8 @@ public class ValidationExceptionHandler {
             System.out.println("constraintViolation.getMessage() = " + constraintViolation.getMessage());
             System.out.println("constraintViolation.getMessageTemplate() = " + constraintViolation.getMessageTemplate());
             System.out.println("constraintViolation.getConstraintDescriptor() = " + constraintViolation.getConstraintDescriptor());
+            System.out.println("constraintViolation.getConstraintDescriptor().getAnnotation().annotationType() = "
+              + constraintViolation.getConstraintDescriptor().getAnnotation().annotationType());
             System.out.println("constraintViolation.getExecutableParameters() = " + constraintViolation.getExecutableParameters());
             System.out.println("constraintViolation.getExecutableReturnValue() = " + constraintViolation.getExecutableReturnValue());
             System.out.println("constraintViolation.getInvalidValue() = " + constraintViolation.getInvalidValue());

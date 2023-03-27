@@ -1,6 +1,10 @@
 # Spring Core summary
 
+## preview. bean life cylcle
+
 ## [1] 빈 초기화, 소멸  메서드
+
+<img src="./images/bean_life_cycle.png">
 
 **생성 순서**
 1. constructor (constructor 생성 이후 BeanNameAware.setBeanName() 호출)

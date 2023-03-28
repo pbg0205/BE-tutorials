@@ -1,2 +1,4 @@
 com.cooper.tobyboot.config.autoconfig.TomcatWebServerConfig
 com.cooper.tobyboot.config.autoconfig.DispatcherServletConfig
+com.cooper.tobyboot.config.autoconfig.PropertyPostProcessorConfig
+com.cooper.tobyboot.config.autoconfig.PropertyPlaceholderConfig

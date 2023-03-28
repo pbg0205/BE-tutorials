@@ -3,7 +3,6 @@ package com.cooper.tobyboot.config.autoconfig;
 import com.cooper.tobyboot.config.ConditionalMyOnClass;
 import com.cooper.tobyboot.config.EnableMyConfigurationProperties;
 import com.cooper.tobyboot.config.MyAutoConfiguration;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;

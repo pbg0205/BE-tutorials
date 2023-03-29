@@ -39,6 +39,9 @@ public class BookController {
         long startTime = System.currentTimeMillis();
         log.debug("startTime : {}", startTime);
 
+        if (bookId.equals("1")) {
+            bookId = null;
+        }
         BookLookupResponseDto bookLookupResponseDto = bookService.findBookById(bookId);
 
         long endTime = System.currentTimeMillis();

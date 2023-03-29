@@ -5,7 +5,6 @@ import com.cooper.springcache.book.domain.BookRepository;
 import com.cooper.springcache.book.dto.BookCreateRequestDto;
 import com.cooper.springcache.book.dto.BookCreateResponseDto;
 import com.cooper.springcache.book.dto.BookLookupResponseDto;
-import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -25,8 +24,9 @@ public class BookService {
         return new BookCreateResponseDto(book.getId(), book.getTitle());
     }
 
-    @Cacheable(key = "#bookId", value = "book")
+    @Cacheable(key = "#bookId", value = "book", condition = "#bookId != null")
     public BookLookupResponseDto findBookById(String bookId) {
+        System.out.println("findBookById parameter: " + bookId);
         Book book = bookRepository.findById(bookId).orElseThrow(RuntimeException::new);
         return new BookLookupResponseDto(book.getId(), book.getTitle());
     }

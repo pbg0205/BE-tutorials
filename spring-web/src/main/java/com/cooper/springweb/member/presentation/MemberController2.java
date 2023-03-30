@@ -20,6 +20,10 @@ public class MemberController2 {
 
 	@GetMapping("/params")
 	public ResponseEntity<Void> withParam(MemberRequestDto memberRequestDto, HttpServletRequest httpServletRequest) {
+		/**
+		 * - key 값이 존재하면 blank (key=)
+		 * - key 값이 없으면 null ()
+		 */
 		log.info("request url: {}", httpServletRequest.getRequestURL());
 		log.info("query string: {}", httpServletRequest.getQueryString());
 		log.info("memberRequestDto : {}", memberRequestDto);

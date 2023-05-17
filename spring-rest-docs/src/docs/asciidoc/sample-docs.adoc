@@ -4,7 +4,6 @@
 :source-highlighter: highlightjs
 :toc: left
 :toclevels:2
-:sectlinks:
 
 == 샘플 단건 조회
 
@@ -16,6 +15,7 @@ include::{snippets}/find-sample/curl-request.adoc[]
 
 include::{snippets}/find-sample/http-request.adoc[]
 include::{snippets}/find-sample/path-parameters.adoc[]
+include::{snippets}/find-sample/request-parameters.adoc[]
 
 === 응답
 

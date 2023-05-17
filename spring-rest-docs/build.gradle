@@ -10,7 +10,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
-    asciidoctorExtensions
+    asciidoctorExtensions // task 가 실행될 때, 클래스 경로를 추가된다.
     compileOnly {
         extendsFrom annotationProcessor
     }
@@ -40,7 +40,7 @@ test {
 
 asciidoctor {
     configurations 'asciidoctorExtensions'
-    baseDirFollowsSourceFile() // include 연산 동작시, base directory 를 지정해주는 명령어
+    baseDirFollowsSourceFile() // include 연산 동작시, base directory 를 SourceFile 을 따르도록 하는 명령어
     inputs.dir snippetsDir
     dependsOn test
 }

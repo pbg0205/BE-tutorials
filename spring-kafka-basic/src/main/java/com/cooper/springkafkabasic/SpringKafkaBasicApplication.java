@@ -14,6 +14,7 @@ public class SpringKafkaBasicApplication {
 
         KafkaProducer producer = context.getBean(KafkaProducer.class);
         producer.send("custom.topic", new MessageDto("cooper message", "ver.1.0"));
+        producer.send("custom.topic.error", new MessageDto("cooper message", "ver.1.0"));
     }
 
 }

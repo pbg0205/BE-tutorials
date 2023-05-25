@@ -15,22 +15,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class KafkaProducerConfig {
+public class KafkaProducerConfiguration {
 
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
 
     @Bean
     public ProducerFactory<String, MessageDto> messageProducerFactory() {
-        return new DefaultKafkaProducerFactory<>(producerConfigs());
+        return new DefaultKafkaProducerFactory<>(producerConfigs(), new StringSerializer(), new JsonSerializer<>());
     }
 
     @Bean
     public Map<String, Object> producerConfigs() {
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+//        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+//        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         // See https://kafka.apache.org/documentation/#producerconfigs for more properties
         return props;
     }

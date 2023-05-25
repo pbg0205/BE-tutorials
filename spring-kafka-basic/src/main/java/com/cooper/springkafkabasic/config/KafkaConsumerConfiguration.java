@@ -10,14 +10,19 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
+import org.springframework.util.backoff.BackOff;
+import org.springframework.util.backoff.FixedBackOff;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.springframework.kafka.listener.ContainerProperties.AckMode;
+
 @EnableKafka
 @Configuration
-public class KafkaConsumerConfig {
+public class KafkaConsumerConfiguration {
 
     @Value(value = "${spring.kafka.bootstrap-servers}")
     private String bootstrapAddress;
@@ -30,7 +35,7 @@ public class KafkaConsumerConfig {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
         props.put(ConsumerConfig.MAX_PARTITION_FETCH_BYTES_CONFIG, "20971520");
         props.put(ConsumerConfig.FETCH_MAX_BYTES_CONFIG, "20971520");
-        return new DefaultKafkaConsumerFactory<>(props);
+        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(MessageDto.class));
     }
 
     @Bean

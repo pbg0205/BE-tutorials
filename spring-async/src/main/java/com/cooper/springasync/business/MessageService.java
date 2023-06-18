@@ -10,7 +10,7 @@ import java.util.concurrent.CompletableFuture;
 @RequiredArgsConstructor
 public class MessageService {
 
-    @Async("threadPoolExecutor")
+    @Async("messageThreadPoolExecutor")
     public void getMessageVoid(String message) {
         System.out.println("this.getClass : " + this.getClass());
         System.out.println("this : " + this);
@@ -18,7 +18,7 @@ public class MessageService {
         System.out.println(message);
     }
 
-    @Async("threadPoolExecutor")
+    @Async("messageThreadPoolExecutor")
     public void getMessageException(String message) {
         System.out.println("this.getClass : " + this.getClass());
         System.out.println("this : " + this);
@@ -26,7 +26,7 @@ public class MessageService {
         throw new RuntimeException("비동기 예외 발생");
     }
 
-    @Async("threadPoolExecutor")
+    @Async("messageThreadPoolExecutor")
     public CompletableFuture<String> getMessageCompletableFuture(String message) {
         return CompletableFuture.supplyAsync(() -> {
             System.out.println("this.getClass : " + this.getClass());

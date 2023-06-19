@@ -3,6 +3,7 @@ package com.cooper.springredission.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Promotion {
 
@@ -31,11 +33,11 @@ public class Promotion {
     private List<Ticket> tickets = new ArrayList<>();
 
     @Column(length = 20, nullable = false)
-    private Long ticketMaxLimit;
+    private int ticketAmount;
 
-    public Promotion(final String name, final Long ticketMaxLimit) {
+    public Promotion(final String name, final int ticketAmount) {
         this.name = name;
-        this.ticketMaxLimit = ticketMaxLimit;
+        this.ticketAmount = ticketAmount;
     }
 
     public void addTicket(final Ticket ticket) {
@@ -43,12 +45,12 @@ public class Promotion {
         ticket.setPromotion(this);
     }
 
-    public boolean isClosed() {
-        return tickets.size() >= ticketMaxLimit;
+    public boolean soldOut() {
+        return remainingTickets() <= 0;
     }
 
-    public int getTicketSize() {
-        return this.tickets.size();
+    public int remainingTickets() {
+        return ticketAmount - this.tickets.size();
     }
 
 }

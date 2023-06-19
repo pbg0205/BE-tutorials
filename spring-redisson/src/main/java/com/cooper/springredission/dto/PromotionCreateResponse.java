@@ -7,7 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PromotionCreateResponse {
 
+    private final Long promotionId;
     private final String promotionName;
-    private final Long ticketMaxLimit;
+    private final int ticketMaxLimit;
 
 }

@@ -5,7 +5,8 @@ spring:
         format_sql: true
         query:
           in_clause_parameter_padding: true
-    open-in-view: false
+        show_sql: true
+#    open-in-view: false
     hibernate:
       ddl-auto: create-drop
   datasource:

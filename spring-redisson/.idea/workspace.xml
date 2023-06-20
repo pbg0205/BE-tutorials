@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5e970fe9-d377-4b4d-a630-7e233b39da97" name="Changes" comment="feat: redisson 분산락 적용 코드 작성">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../_lecture-code/spring-data-lecture1/src/test/java/com/cooper/springdatalecture1/jdbc/service/MemberServiceV3_3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/../_lecture-code/spring-data-lecture1/src/test/java/com/cooper/springdatalecture1/jdbc/service/MemberServiceV3_3Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-cache/src/main/resources/local_test.http" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-cache/src/main/resources/local_test.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-data-jpa-querydsl-pagination/docker/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-data-jpa-querydsl-pagination/docker/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-kafka-basic/src/main/java/com/cooper/springkafkabasic/config/KafkaProducerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-kafka-basic/src/main/java/com/cooper/springkafkabasic/config/KafkaProducerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/img01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/img02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/img03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/SpringRedissonApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/business/DistributedLockPromotionTicketBuyFacade.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/business/PromotionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/business/PromotionTicketBuyService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/domain/Promotion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/domain/PromotionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/domain/Ticket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/domain/TicketRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/dto/PromotionCreateRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/dto/PromotionCreateResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/dto/TicketCreateResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/exception/PromotionNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/exception/TicketSoldOutException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/presentation/PromotionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cooper/springredission/presentation/TicketController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/cooper/springredission/SpringRedissonApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/cooper/springredission/business/PromotionTicketBuyServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-rest-docs/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-rest-docs/build.gradle" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="spring-redisson" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="spring-redisson" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="SOFT" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2LtzJY9SEzNFZnoJHqJzraoudj8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelOrder2&quot;: &quot;2&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth2&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ShowUsagesActions.previewPropertyKey&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/cooper/Cooper/study/java/BE-tutorials/spring-redisson&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.haulmont.jpb.viewMode&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;ebacd1f95b7eea5d8e14f04fd4b04e39&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;redis&quot;,
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.cooper.springredission.exception" />
+      <recent name="com.cooper.springredission.business" />
+      <recent name="com.cooper.springredission.domain" />
+      <recent name="com.cooper.springredission.dto" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.cooper.springredission.business" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SpringRedissonApplication(3)">
+    <configuration name="SimplePromotionTicketServiceTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.cooper.springredission.business.SimplePromotionTicketServiceTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="SimplePromotionTicketServiceTest.buyTicketTest01" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.cooper.springredission.business.SimplePromotionTicketServiceTest.buyTicketTest01&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="PromotionTicketBuyServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-redisson.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cooper.springredission.business.PromotionTicketBuyService" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cooper.springredission.business" />
+      <option name="MAIN_CLASS_NAME" value="com.cooper.springredission.business.PromotionTicketBuyServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PromotionTicketBuyServiceTest.buyTicketTest01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-redisson.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cooper.springredission.business.PromotionTicketBuyService" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cooper.springredission.business" />
+      <option name="MAIN_CLASS_NAME" value="com.cooper.springredission.business.PromotionTicketBuyServiceTest" />
+      <option name="METHOD_NAME" value="buyTicketTest01" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PromotionTicketBuyServiceTest.ticketTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-redisson.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.cooper.springredission.business.PromotionTicketBuyService" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.cooper.springredission.business" />
+      <option name="MAIN_CLASS_NAME" value="com.cooper.springredission.business.PromotionTicketBuyServiceTest" />
+      <option name="METHOD_NAME" value="ticketTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringRedissonApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="spring-redisson.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cooper.springredission.SpringRedissonApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringRedissonApplication(2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <envs>
+        <env name="server.port" value="8081" />
+      </envs>
+      <module name="spring-redisson.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cooper.springredission.SpringRedissonApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringRedissonApplication(3)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="spring-redisson.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cooper.springredission.SpringRedissonApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.SimplePromotionTicketServiceTest" />
+      <item itemvalue="Gradle.SimplePromotionTicketServiceTest.buyTicketTest01" />
+      <item itemvalue="JUnit.PromotionTicketBuyServiceTest" />
+      <item itemvalue="JUnit.PromotionTicketBuyServiceTest.buyTicketTest01" />
+      <item itemvalue="JUnit.PromotionTicketBuyServiceTest.ticketTest" />
+      <item itemvalue="Spring Boot.SpringRedissonApplication(3)" />
+      <item itemvalue="Spring Boot.SpringRedissonApplication" />
+      <item itemvalue="Spring Boot.SpringRedissonApplication(2)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PromotionTicketBuyServiceTest" />
+        <item itemvalue="JUnit.PromotionTicketBuyServiceTest.buyTicketTest01" />
+        <item itemvalue="Gradle.SimplePromotionTicketServiceTest.buyTicketTest01" />
+        <item itemvalue="Gradle.SimplePromotionTicketServiceTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e970fe9-d377-4b4d-a630-7e233b39da97" name="Changes" comment="" />
+      <created>1676705097840</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676705097840</updated>
+      <workItem from="1676705099800" duration="198000" />
+      <workItem from="1676705342911" duration="13000" />
+      <workItem from="1676705394180" duration="17405000" />
+      <workItem from="1676778237116" duration="11555000" />
+      <workItem from="1676989393319" duration="1280000" />
+      <workItem from="1677157220234" duration="78000" />
+      <workItem from="1677237906525" duration="3992000" />
+      <workItem from="1687100486642" duration="27168000" />
+      <workItem from="1687198534443" duration="183000" />
+      <workItem from="1687237612503" duration="5783000" />
+      <workItem from="1687255470409" duration="336000" />
+    </task>
+    <task id="LOCAL-00001" summary="test: 불필요 코드 제거">
+      <created>1687186544545</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687186544545</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: redisson 분산락 적용 코드 작성">
+      <created>1687198477632</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1687198477632</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test: 불필요 코드 제거" />
+    <MESSAGE value="feat: redisson 분산락 적용 코드 작성" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: redisson 분산락 적용 코드 작성" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/cooper/springredission/business/RedissonPromotionServiceTest.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

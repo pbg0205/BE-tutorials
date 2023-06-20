@@ -26,9 +26,9 @@ public class Promotion {
    private String name;
 
    @Column(length = 20, nullable = false)
-   private int ticketAmount;
+   private int ticketAmount; // shared resources (warning race condition!)
 
-   public Promotion(final String name, final int ticketAmount) {
+    public Promotion(final String name, final int ticketAmount) {
       this.name = name;
       this.ticketAmount = ticketAmount;
    }

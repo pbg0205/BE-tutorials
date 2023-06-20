@@ -1,3 +1,8 @@
+# Redisson, Spring AOP, SpelParser 를 이용한 분산락 적용 방법
+
+> [[Kurly Tech Blog] 풀필먼트 입고 서비스팀에서 분산락을 사용하는 방법 - Spring Redisson](https://helloworld.kurly.com/blog/distributed-redisson-lock/)
+> 을 참고하여 작성한 내용.
+
 # 컴포넌트 정리
 
 1. `DistributedLockAop` : `@DistributedLock` annotation 을 매핑하여 분산락을 설정, 해제하는 Aspect 클래스  

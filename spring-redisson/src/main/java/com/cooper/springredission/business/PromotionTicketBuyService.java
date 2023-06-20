@@ -32,9 +32,11 @@ public class PromotionTicketBuyService {
             throw new TicketSoldOutException("프로모션의 티켓이 마감 되었습니다.");
         }
 
-        promotion.addTicket(new Ticket(1000L));
-        Promotion savedPromotion = promotionRepository.save(promotion);
-        return new TicketCreateResponse(savedPromotion.getId(), savedPromotion.getName(), savedPromotion.remainingTickets());
+        Ticket ticket = new Ticket(1000L, promotion.getId());
+        ticketRepository.save(ticket);
+        promotion.decreaseTicketAmount();
+
+        return new TicketCreateResponse(promotion.getId(), promotion.getName(), promotion.remainingTickets());
     }
 
     public TicketCreateResponse buyTicketWithRLockInTx(final Long promotionId) {
@@ -51,13 +53,11 @@ public class PromotionTicketBuyService {
                 throw new TicketSoldOutException("프로모션의 티켓이 마감 되었습니다.");
             }
 
-            Ticket ticket = new Ticket(1000L);
+            Ticket ticket = new Ticket(1000L, promotion.getId());
+            ticketRepository.save(ticket);
+            promotion.decreaseTicketAmount();
 
-            Ticket savedTicket = ticketRepository.save(ticket);
-            promotion.addTicket(savedTicket);
-            Promotion savedPromotion = promotionRepository.save(promotion);
-
-            return new TicketCreateResponse(savedPromotion.getId(), savedPromotion.getName(), savedPromotion.remainingTickets());
+            return new TicketCreateResponse(promotion.getId(), promotion.getName(), promotion.remainingTickets());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {

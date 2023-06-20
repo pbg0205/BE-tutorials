@@ -2,17 +2,12 @@ package com.cooper.springredission.domain;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -25,13 +20,12 @@ public class Ticket {
     @Column(length = 15, nullable = false)
     private Long price;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "promotion_id")
-    @Setter
-    private Promotion promotion;
+    @Column(length = 20, nullable = false)
+    private Long promotionId;
 
-    public Ticket(final Long price) {
+    public Ticket(final Long price, final Long promotionId) {
         this.price = price;
+        this.promotionId = promotionId;
     }
 
 }

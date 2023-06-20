@@ -5,15 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -23,14 +19,12 @@ public class Promotion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(length = 20)
     private Long id;
 
     @Getter
     @Column(length = 100, nullable = false)
     private String name;
-
-    @OneToMany(mappedBy = "promotion", cascade = {CascadeType.ALL})
-    private List<Ticket> tickets = new ArrayList<>();
 
     @Column(length = 20, nullable = false)
     private int ticketAmount;
@@ -40,17 +34,16 @@ public class Promotion {
         this.ticketAmount = ticketAmount;
     }
 
-    public void addTicket(final Ticket ticket) {
-        tickets.add(ticket);
-        ticket.setPromotion(this);
+    public void decreaseTicketAmount() {
+        this.ticketAmount -= 1;
     }
 
     public boolean soldOut() {
-        return remainingTickets() <= 0;
+        return ticketAmount <= 0;
     }
 
     public int remainingTickets() {
-        return ticketAmount - this.tickets.size();
+        return this.ticketAmount;
     }
 
 }

@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        query:
+          in_clause_parameter_padding: true
+        show_sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://localhost:3306/cooper_db
+    username: root
+    password: cooper2021
+    driver-class-name: com.mysql.cj.jdbc.Driver
+logging:
+  level:
+    com.cooper.com.cooper.springredisson: debug
+---
+
+spring:
+  redis:
+    host: localhost
+    port: 6379

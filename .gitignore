@@ -7,6 +7,7 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 .DS_Store
+**/.idea/**
 .idea/**
 
 # User-specific stuff
@@ -140,5 +141,8 @@ gradle-app.setting
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+
+# docker/directory
+**/docker/
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij

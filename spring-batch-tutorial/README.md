@@ -63,6 +63,8 @@
 
 출처 : https://docs.spring.io/spring-batch/docs/4.3.8/reference/html/domain.html
 
+<br>
+
 ## 3. Spring Batch Job 설정
 
 ### (1) Spring Batch Job 설정하기 위한 컴포넌트
@@ -92,6 +94,8 @@
 
 - batch.job_listener package 참조
 
+<br>
+
 ### (3) Batch Scheduling 하기
 
 1. `@EnableScheduling` 선언
@@ -116,3 +120,8 @@ public class SampleScheduler {
     }
 }
 ```
+
+### References
+
+- [[스프링 배치 입문] 예제로 배우는 핵심 Spring Batch](https://www.inflearn.com/course/%EC%98%88%EC%A0%9C%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%ED%95%B5%EC%8B%AC-%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B0%B0%EC%B9%98/dashboard)
+- [[spring.io] Spring Batch - The Domain Language of Batch](https://docs.spring.io/spring-batch/docs/current/reference/html/domain.html#domainLanguageOfBatch)

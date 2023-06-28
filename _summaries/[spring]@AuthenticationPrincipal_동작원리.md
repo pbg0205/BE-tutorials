@@ -1,26 +1,16 @@
+## 1. **@AuthenticationPrincipal**
+
 > 줌인터넷에 신입 개발자의 파일럿 프로젝트에 관한 블로그 글이 있었다.
 > 짧은 기간 작업을 하지만 스프링 공식 문서를 통해서 문제를 해결해나가는 과정이 인상 깊었다.  
 > ***@AuthenticationPrincipal*** 과 @CreatedBy, @Modified를 통해서 인증 객체를 주입한 내용이 좋아서 정리하려고 한다 😃
 
-## ***@AuthenticationPrincipal***
-
----
 
 ### 1.  **@AuthenticationPrincipal??**
-
-[[spring.io]
-@AuthenticationPrincipal](https://docs.spring.io/spring-security/reference/servlet/integrations/mvc.html#mvc-authentication-principal)
->
-@AuthenticationPrincipal [[spring docs](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/annotation/AuthenticationPrincipal.html)] :
-> Annotation that is used to
->
-resolve [Authentication.getPrincipal()](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/Authentication.html#getPrincipal())
-> to a method argument.
 
 - **Authentication.getPrincipal**
   을 [Resolver](https://www.notion.so/zum-tech-CMS-A-3e8e9fdcfa5a4fe1a7562ec71affd2dd)를 거쳐 **method argument** 로 데이터를
   주입한다.
-- **@AuthenticationPrincipal** 을 선언하면 **AuthenticationPrincipalArgumentResolver**을 통해 자동으로 Prinicipal 의 하위 객체를 주입해준다.
+- **@AuthenticationPrincipal** 을 선언하면 `AuthenticationPrincipalArgumentResolver` 을 통해 자동으로 Prinicipal 의 하위 객체를 주입해준다.
 
 `예시`
 
@@ -44,21 +34,18 @@ public ResponseEntity updateComment(@RequestBody @Valid CommentUpdateRequestDto 
 
 참고 : ****[[Spring] Resolver 란? Resolver 구현하기(HandlerMethodArgumentResolver)](https://velog.io/@gillog/Spring-HandlerMethodArgumentResolver-PathVariable-RequestHeader-RequestParam)****
 
----
 
-### 2. **@AuthenticationPrincipal 기반한 custom annotation**
+## 2. **@AuthenticationPrincipal 기반한 custom annotation**
 
 - **@AuthenticationPrincipal** 을 기반한 커스텀 어노테이션을 만들 수도 있다.
 - custom annotation 을 사용하면 동일하게 **AuthenticationPrincipalArgumentResolver** 가 커트롤러 method Argument를 전달한다.
+- 커스텀 어노테이션을 사용하면 의미를 명확히 전달할 수 있어 코드의 가독성을 높혀주는 장점이 있다.
 
 <br>
 
 > [parameter & argument 차이](http://taewan.kim/tip/argument_parameter/)
-
-- **parameter** : 메서드에 선언한 입력 변수명
-- **argument** :  선언한 메서드를 사용할 때의 입력 값 (왜 갑자기 헷갈리지…?)
-
-- 커스텀 어노테이션을 사용하면 의미를 명확히 전달할 수 있어 코드의 가독성을 높혀주는 장점이 있다.
+>- **parameter** : 메서드에 선언한 입력 변수명
+>- **argument** :  선언한 메서드를 사용할 때의 입력 값 (왜 갑자기 헷갈리지…?)
 
 **`예시`**
 
@@ -84,37 +71,27 @@ public ResponseEntity updateComment(@RequestBody @Valid CommentUpdateRequestDto 
     }
     ```
 
-- **
-  References : [[spring docs] AuthenticationPrincipalArgumentResolver](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/bind/support/AuthenticationPrincipalArgumentResolver.html)**
+- **References : [[spring docs] AuthenticationPrincipalArgumentResolver](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/bind/support/AuthenticationPrincipalArgumentResolver.html)**
 
----
 
-### 3. **AuthenticationPrincipalArgumentResolver??**
+## 3. **AuthenticationPrincipalArgumentResolver**
 
-- AuthenticationPrincipalArgumentResolver
-
-> [[spring docs](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/method/annotation/AuthenticationPrincipalArgumentResolver.html)]
-> Allows resolving the Authentication.getPrincipal() using the AuthenticationPrincipal annotation
-
--
-
-package [org.springframework.security.web.method.annotation](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/method/annotation/package-summary.html)
+- [AuthenticationPrincipalArgumentResolver](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/method/annotation/AuthenticationPrincipalArgumentResolver.html)
+- Allows resolving the Authentication.getPrincipal() using the AuthenticationPrincipal annotation
+- [org.springframework.security.web.method.annotation](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/method/annotation/package-summary.html)
 하위에 존재하는 클래스
-
-(
-package [org.springframework.security.web.bind.support](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/bind/support/package-summary.html)
-에 있는 클래스는 deprecated)
+  
+  ([org.springframework.security.web.bind.support](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/bind/support/package-summary.html) 에 있는 클래스는 deprecated)
 
 - spring 5.0 이상은 충분히 사용 가능하다. (spring 4.0 부터 도입되었음)
 
----
 
-### 4. **AuthenticationPrincipalArgumentResolver 의 대표적인 메서드 살펴보기**
+## 4. **AuthenticationPrincipalArgumentResolver 의 대표적인 메서드 살펴보기**
 
 > **AuthenticationPrincipalArgumentResolver 의 대표적인 메서드** `supportsParameter` 와 `resolveArgument` **를 확인해보자.**
 >
 
-`supportsParameter`
+### (1) `supportsParameter` method
 
 ```java
 public final class AuthenticationPrincipalArgumentResolver implements HandlerMethodArgumentResolver {
@@ -154,7 +131,7 @@ public final class AuthenticationPrincipalArgumentResolver implements HandlerMet
 2. AnnotationUtils를 통해 어노테이션이 **AuthenticationPrincipal 타입**인지를 찾는다.
 3. 만약에 어노테이션 타입이 존재하면 해당 annotaion 을 반환하고 그렇지 않으면 null을 반환한다.
 
-`resolveArgument`
+### (2) `resolveArgument` method
 
 ```java
 

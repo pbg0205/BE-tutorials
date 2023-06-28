@@ -4,11 +4,11 @@
 
 `@Async` 어노테이션은 비동기 동작을 지원하는 어노테이션이다. `@Async` 어노테이션을 선언하면 별도의 쓰레드를 할당해 작업을 분리시킨다. @Async 어노테이션을
 선언하기 위해서는 `메서드의 접근제한자가 public` 이어야 하고, `자기 호출(self-invocation)` 이면 안됀다. 만약 이 규칙을 지키지 않을 경우에는 @Async
-어노테이션이 동작하지 않는다.
+어노테이션이 동작하지 않는다. (이유는 비동기는 `프록시 기반`으로 호출하기 때문에!!)
 
 ## @Async & ThreadPool
 
-- 쓰레드 풀은 선언하는 방법은 application level 과 method level 로 구분된다.
+- 쓰레드 풀은 선언하는 방법은 **application level** 과 **method level** 로 구분된다.
 
 ### `application level`
 

@@ -128,15 +128,16 @@ public final class AuthenticationPrincipalArgumentResolver implements HandlerMet
 
    (아마 메서드의 각 파라미터를 탐색하면서 확인하는 것 같다.)
 
-2. AnnotationUtils를 통해 어노테이션이 **AuthenticationPrincipal 타입**인지를 찾는다.
+2. `AnnotationUtils`를 통해 어노테이션이 **AuthenticationPrincipal 타입**인지를 찾는다.
 3. 만약에 어노테이션 타입이 존재하면 해당 annotaion 을 반환하고 그렇지 않으면 null을 반환한다.
 
 ### (2) `resolveArgument` method
 
 ```java
-
-public class sample {
-
+public final class AuthenticationPrincipalArgumentResolver implements HandlerMethodArgumentResolver {
+    
+    // do something...
+    
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null) {
@@ -168,7 +169,7 @@ public class sample {
 }
 ```
 
-1. 해당 메서드의 파라미터에서 @AuthenticationPrincipal 어노테이션이 있는지를 탐색한다.
+1. 해당 메서드의 파라미터에서 `@AuthenticationPrincipal` 어노테이션이 있는지를 탐색한다.
 2. *StandardEvaluationContext* 클래스는 해당 표현식(e.g. spEL) 을 평가할 개체를 지정한다. (by. reflection)
 3. Expression 객체는 ExpressionParser 을 통해 표현식 문자열 구문 분석을 한 내용과 *StandardEvaluationContext* 에 평가할 개체를 토대로 원하는 객체를 호출한다.
 

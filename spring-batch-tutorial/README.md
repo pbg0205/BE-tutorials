@@ -96,7 +96,27 @@
 
 <br>
 
-### (3) Batch Scheduling 하기
+### (3) 스텝 순서 결정하기
+
+1. `start(Step step)` : 하나의 스텝 또는 일련의 스텝을 실행할 새 작업 빌더 생성.
+2. `next(Step step)` : 순차적으로 Step 을 연결할 때 사용.
+
+- multiple_step  package 참조
+
+<br>
+
+### (3) 스텝 결과에 따라 다음 스텝 선택하기
+
+1. `start(Step step)` : 하나의 스텝 또는 일련의 스텝을 실행할 새 작업 빌더 생성.
+2. `on(String pattern)` : 캐치할 `ExitStatus` 지정.
+3. `to(Step step)` : 다음으로 이동할 `Step` 지정.
+4. `from(Step step)` : 이벤트 리스너 역할을 하며, 일치하는 상태라면 `to()`메서드에 포함된 `Step` 을 호출. 
+
+- conditional_step package 참조
+
+<br>
+
+### (4) Batch Scheduling 하기
 
 1. `@EnableScheduling` 선언
 2. Component 를 생성하여 `@Scheduled(cron = "0 */1 * * * *")` 을 통해 실행할 특정 시간 설정 

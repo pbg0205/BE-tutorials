@@ -161,6 +161,17 @@ OpenJDK Runtime Environment (build 18.0.1.1+2-6)
 OpenJDK 64-Bit Server VM (build 18.0.1.1+2-6, mixed mode, sharing)
 ```
 
+### (7) java memory model
+
+![img.png](java_memory_model.png)
+
+### Tenured (Old Generation)
+
+1. Survivor 영역의 객체가 minor gc 에서 살아 남아 다른 Survivor 영역으로 이동할 때 객체의 Age 가 증가하게 되는데
+  일정 이상의 Age 가 되면 Tenured 영역으로 이동한다.
+2. Promotion 이 되는 기준 Age 는 `-XX:MaxTenuringThreshold` 옵션을 통해 설정 가능하다.
+   Java8 default value 는 `15` 이며, 설정 범위는 `0 <= value <= 15` 이다.
+
 ## References
 
 - [[Naver D2] Java Garbage Collection](https://d2.naver.com/helloworld/1329)

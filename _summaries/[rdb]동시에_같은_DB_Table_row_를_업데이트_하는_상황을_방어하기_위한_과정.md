@@ -31,14 +31,34 @@
 
 <br>
 
-`공유 락 & 배타 락 비교`
+`(1) 공유 락 & 배타 락 비교`
 
-| 락 종류                      | 데이터 조회 여부 | 데이터 수정 가능 여부 | 쿼리 예시 |
-|---------------------------|:---------:|:---------:|:------:|
-| **공유 락(Shared Lock)**     |     O     |     X     |**SELECT** * FROM table_name WHERE id = 1 **FOR SHARE**; |
-| **배타적 락(Exclusive Lock)** |     X     |     X     |**SELECT** * FROM table_name WHERE id = 1 **FOR UPDATE**; |
+| 락 종류                      | 데이터 공유락 접근 가능 여부(FOR SHARE) | 데이터 배타락 접근 가능 여부(FOR EXLUSIVE) | 쿼리 예시 |
+|---------------------------|:---------------------------:|:------------------------------:|:------:|
+| **공유 락(Shared Lock)**     |              O              |               X                |**SELECT** * FROM table_name WHERE id = 1 **FOR SHARE**; |
+| **배타적 락(Exclusive Lock)** |              X              |               X                |**SELECT** * FROM table_name WHERE id = 1 **FOR UPDATE**; |
 
 <br>
+
+`(2) 배타 락을 설정했을 때 이후 사용자의 공유 락(SELECT ... FOR SHARE) 접근 여부 확인`
+
+1. 이후 사용자가 접근할 경우, 배타 락이 해제될 때까지 `블로킹(blocking)` 되었다가 동작
+
+![x_lock_test.png](rdb_images/x_lock_s_lock_test.png)
+
+![img.png](rdb_images/select_for_share_after_x_lock.png)
+
+<br>
+
+`(3) 배타 락을 설정했을 때 이후 사용자의 단순 조회(SELECT) 접근 여부 확인`
+
+1. <u>대신 단순 조회의 경우에는 접근이 가능하다.</u>
+
+![img.png](rdb_images/x_lock_select_test.png)
+
+![img.png](rdb_images/select_after_x_lock.png)
+
+
 
 ### (2) 트랜잭션 격리 수준(Transaction Isolation Level) 설정
 

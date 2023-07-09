@@ -100,8 +100,9 @@ public class BookService {
 
 ## 3. @Tansactional + sync 를 비정상 동작하는 이유
 
-> Book 을 추가하는데 Transaction 이 열리고 동기 처리하고 나서 <u>Transaction 이 완료 및 Session 이 닫혔는데</u> BookHistory 를 추가하는 부분에서
-> <u>이미 종료된 기존의 Transaction 을 찾으려고 해서 에러</u>
+- Book 을 추가하는데 Transaction 이 열리고 동기 처리하고 나서 <u>Transaction 이 완료 및 Session 이 닫혔는데</u> 
+- BookHistory 를 추가하는 부분에서<u>이미 종료된 기존의 Transaction 을 찾으려고 해서 에러</u>
+- 그러므로, 만약 `sync + @TransactionEventListener`동작시키고 싶다면 `@Transactional(propagation = Propagation.REQUIRED_NEW)` 를 사용하자.
 
 ```
 2023-07-08 01:03:47.666 DEBUG 3849 --- [    Test worker] o.s.orm.jpa.JpaTransactionManager        : Creating new transaction with name [com.cooper.baseentityeventlistener.book.application.BookService.createBook]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
@@ -113,3 +114,5 @@ public class BookService {
 
 2023-07-08 01:03:47.788 DEBUG 3849 --- [    Test worker] o.s.orm.jpa.JpaTransactionManager        : Participating in existing transaction
 ```
+
+![img.png](images/img.png)

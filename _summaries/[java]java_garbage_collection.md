@@ -163,7 +163,7 @@ OpenJDK 64-Bit Server VM (build 18.0.1.1+2-6, mixed mode, sharing)
 
 ### (7) java memory model
 
-![img.png](java_memory_model.png)
+![img.png](java_images/java_memory_model.png)
 
 ### Tenured (Old Generation)
 

@@ -1,5 +1,6 @@
 package com.cooper.loginwithjwt.common.config;
 
+import com.cooper.loginwithjwt.member.handler.LoginAuthenticationFailureHandler;
 import com.cooper.loginwithjwt.member.handler.LoginAuthenticationSuccessHandler;
 import com.cooper.loginwithjwt.member.filter.JwtLoginAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -24,6 +26,7 @@ public class SecurityConfig {
 
     private final AuthenticationConfiguration authenticationConfiguration;
     private final LoginAuthenticationSuccessHandler loginAuthenticationSuccessHandler;
+    private final LoginAuthenticationFailureHandler loginAuthenticationFailureHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -68,6 +71,7 @@ public class SecurityConfig {
         JwtLoginAuthenticationFilter jwtLoginAuthenticationFilter = new JwtLoginAuthenticationFilter();
         jwtLoginAuthenticationFilter.setAuthenticationManager(authenticationManager(authenticationConfiguration));
         jwtLoginAuthenticationFilter.setAuthenticationSuccessHandler(loginAuthenticationSuccessHandler);
+        jwtLoginAuthenticationFilter.setAuthenticationFailureHandler(loginAuthenticationFailureHandler);
         return jwtLoginAuthenticationFilter;
     }
 

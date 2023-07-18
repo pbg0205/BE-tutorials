@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.CredentialsExpiredException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
@@ -26,13 +29,27 @@ public class LoginAuthenticationFailureHandler implements AuthenticationFailureH
     public void onAuthenticationFailure(HttpServletRequest request,
                                         HttpServletResponse response,
                                         AuthenticationException exception)
-            throws IOException, ServletException {
+            throws IOException {
         response.setCharacterEncoding(StandardCharsets.UTF_8.name());
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
-        ApiResponse<?> apiResponse = ApiResponse.error(ErrorType.LOGIN_FAIL, ErrorType.LOGIN_FAIL);
+        ErrorType errorType = setErrorType(exception);
+
+        ApiResponse<?> apiResponse = ApiResponse.error(errorType);
         objectMapper.writeValue(response.getWriter(), apiResponse);
+    }
+
+    private ErrorType setErrorType(AuthenticationException exception) {
+        if (exception instanceof BadCredentialsException) {
+            return ErrorType.INVALID_PASSWORD;
+        }
+
+        if (exception instanceof DisabledException) {
+            return ErrorType.ACCOUNT_LOCK;
+        }
+
+        return ErrorType.LOGIN_FAIL;
     }
 
 }

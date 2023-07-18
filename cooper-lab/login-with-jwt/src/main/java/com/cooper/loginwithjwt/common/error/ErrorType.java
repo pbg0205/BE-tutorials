@@ -19,9 +19,19 @@ public enum ErrorType {
             "invalid input parameter.",
             LogLevel.ERROR),
     LOGIN_FAIL(
-            HttpStatus.BAD_REQUEST,
-            ErrorCode.E403,
+            HttpStatus.FORBIDDEN,
+            ErrorCode.E40101,
             "login fail",
+            LogLevel.ERROR),
+    INVALID_PASSWORD(
+            HttpStatus.FORBIDDEN,
+            ErrorCode.E40102,
+            "login fail because of invalid password.",
+            LogLevel.ERROR),
+    ACCOUNT_LOCK(
+            HttpStatus.FORBIDDEN,
+            ErrorCode.E40103,
+            "login fail because account is locked.",
             LogLevel.ERROR);
 
     private final HttpStatus status;

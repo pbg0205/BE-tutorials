@@ -1,0 +1,21 @@
+### 상품 생성
+
+POST localhost:8080/api/products
+Content-Type: application/json
+
+{
+  "name" : "product1",
+  "quantity" : 3
+}
+
+### 상품 조회
+
+GET localhost:8080/api/products?id=20
+Content-Type: application/json
+
+### 상품 제거
+
+DELETE localhost:8080/api/products
+Content-Type: application/json
+
+{"id" :  19}

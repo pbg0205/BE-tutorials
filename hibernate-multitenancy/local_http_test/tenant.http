@@ -1,8 +1,10 @@
 ### tenant DB 등록
-GET http://localhost:8080/tenant/create-db?tenantId=id01
+POST http://localhost:8080/tenant/create-db
+
+id01
 
 ### sample companies 등록, id01 tenant (X-TENANT-ID = null 일 경우, default)
-GET http://localhost:8080/companies/add
+POST http://localhost:8080/companies
 X-TENANT-ID: id01
 
 ### companies 조회, 존재하지 않는 tenantId

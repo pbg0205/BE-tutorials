@@ -9,6 +9,8 @@ import com.cooper.hibernatemultitenancy.tenant.TenantDatabaseHelper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,8 +25,8 @@ public class TenantController {
 
     private final TenantDatabaseHelper tenantDatabaseHelper;
 
-    @GetMapping("/tenant/create-db")
-    public String createTenantDatabase(String tenantId) {
+    @PostMapping("/tenant/create-db")
+    public String createTenantDatabase(@RequestBody String tenantId) {
         Tenant tenant = createTenant(tenantId);
         tenantDatabaseHelper.executeSchemaExport(tenant);
         return tenant.getDbName();
@@ -48,7 +50,7 @@ public class TenantController {
         return ResponseEntity.ok(companies);
     }
 
-    @GetMapping("/companies/add")
+    @PostMapping("/companies")
     public String addCompany() {
         Company company = Company.create("sample-" + System.currentTimeMillis());
         return companyRepository.save(company).getId();

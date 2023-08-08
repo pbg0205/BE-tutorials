@@ -18,7 +18,6 @@ public class CompanyService {
     private final MasterService masterService;
     private final CompanyRepository companyRepository;
 
-    @Async
     @Transactional(transactionManager = "tenantTransactionManager")
     public List<Company> findAll() {
         List<Company> companies = companyRepository.findAll();

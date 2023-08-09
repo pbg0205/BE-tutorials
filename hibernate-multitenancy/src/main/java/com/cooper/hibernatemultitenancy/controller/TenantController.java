@@ -50,6 +50,12 @@ public class TenantController {
         return ResponseEntity.ok(companies);
     }
 
+    @GetMapping("/companies/async")
+    public ResponseEntity<List<Company>> findAllCompaniesAsync() {
+        List<Company> companies = companyService.findAllAsync();
+        return ResponseEntity.ok(companies);
+    }
+
     @PostMapping("/companies")
     public String addCompany() {
         Company company = Company.create("sample-" + System.currentTimeMillis());
@@ -58,7 +64,7 @@ public class TenantController {
 
     @GetMapping("/tenant-master-nested")
     public String tenantMaterNested() {
-        companyService.nested();
+        companyService.nested("default");
         return "Ok";
     }
 

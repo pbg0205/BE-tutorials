@@ -33,7 +33,7 @@ public class MultiTenantConnectionProviderImpl extends AbstractDataSourceBasedMu
 
     @Override
     protected DataSource selectDataSource(String tenantId) {
-        log.info("selectDataSource: tenantDataSource selected. {}", tenantId);
+        log.info("selectDataSource: tenantDataSource selected. (tenantId = {})", tenantId);
 
         DataSource dataSource = dataSourceMap.get(tenantId);
         if (dataSource == null) {

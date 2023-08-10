@@ -1,0 +1,39 @@
+### 책 생성
+POST http://localhost:8080/api/v1/books
+Content-Type: application/json
+
+{
+  "title" : "bookName01"
+}
+
+### 책 조회
+GET http://localhost:8080/api/v1/books/5aa6099b89e019c20189e0287a940004
+Content-Type: application/json
+
+### 예외 발생
+GET http://localhost:8080/api/v1/books/1
+Content-Type: application/json
+
+### 책 제거
+DELETE http://localhost:8080/api/v1/books/5aa6099b85e787ec0185e789520d0002
+Content-Type: application/json
+
+### 폰 생성
+POST http://localhost:8080/api/v1/phone
+Content-Type: application/json
+
+{
+  "title" : "phoneName01"
+}
+
+### 폰 조회
+GET http://localhost:8080/api/v1/phone/5aa6099b89e019c20189e02d86c00005
+Content-Type: application/json
+
+### 예외 발생
+GET http://localhost:8080/api/v1/phone/1
+Content-Type: application/json
+
+### 폰 제거
+DELETE http://localhost:8080/api/v1/phone/5aa6099b85e787ec0185e789520d0002
+Content-Type: application/json

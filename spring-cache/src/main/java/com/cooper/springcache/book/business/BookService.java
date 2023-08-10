@@ -5,10 +5,12 @@ import com.cooper.springcache.book.domain.BookRepository;
 import com.cooper.springcache.book.dto.BookCreateRequestDto;
 import com.cooper.springcache.book.dto.BookCreateResponseDto;
 import com.cooper.springcache.book.dto.BookLookupResponseDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class BookService {
 
@@ -24,9 +26,9 @@ public class BookService {
         return new BookCreateResponseDto(book.getId(), book.getTitle());
     }
 
-    @Cacheable(key = "#bookId", value = "book", condition = "#bookId != null")
+    @Cacheable(key = "#bookId", cacheNames = {"book"}, condition = "#bookId != null")
     public BookLookupResponseDto findBookById(String bookId) {
-        System.out.println("findBookById parameter: " + bookId);
+        log.debug("bookId : {}", bookId);
         Book book = bookRepository.findById(bookId).orElseThrow(RuntimeException::new);
         return new BookLookupResponseDto(book.getId(), book.getTitle());
     }

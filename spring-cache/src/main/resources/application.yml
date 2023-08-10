@@ -1,8 +1,3 @@
-
-spring:
-  config:
-    activate:
-      on-profile: mysql-local
 --- # spring data jpa config
 
 spring:
@@ -21,11 +16,10 @@ spring:
 
 --- # logging config
 
-
 logging:
   level:
     com.cooper.springcache: debug
-
+    root: debug
 --- # spring cache config
 
 spring:

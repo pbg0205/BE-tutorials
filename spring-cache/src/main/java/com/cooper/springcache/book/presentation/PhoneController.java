@@ -1,12 +1,10 @@
 package com.cooper.springcache.book.presentation;
 
-import com.cooper.springcache.book.business.BookService;
-import com.cooper.springcache.book.dto.BookCreateRequestDto;
-import com.cooper.springcache.book.dto.BookCreateResponseDto;
-import com.cooper.springcache.book.dto.BookLookupResponseDto;
+import com.cooper.springcache.book.business.PhoneService;
+import com.cooper.springcache.book.dto.PhoneCreateRequestDto;
+import com.cooper.springcache.book.dto.PhoneCreateResponseDto;
+import com.cooper.springcache.book.dto.PhoneLookupResponseDto;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,30 +18,30 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/api")
-public class BookController {
+public class PhoneController {
 
-    private final BookService bookService;
+    private final PhoneService phoneService;
 
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
+    public PhoneController(PhoneService phoneService) {
+        this.phoneService = phoneService;
     }
 
-    @PostMapping("/v1/books")
-    public ResponseEntity<BookCreateResponseDto> createBook(@RequestBody BookCreateRequestDto bookCreateRequestDto) {
-        BookCreateResponseDto bookCreateResponseDto = bookService.createBook(bookCreateRequestDto);
+    @PostMapping("/v1/phone")
+    public ResponseEntity<PhoneCreateResponseDto> createBook(@RequestBody PhoneCreateRequestDto phoneCreateRequestDto) {
+        PhoneCreateResponseDto phoneCreateResponseDto = phoneService.createBook(phoneCreateRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(bookCreateResponseDto);
+                .body(phoneCreateResponseDto);
     }
 
-    @GetMapping("/v1/books/{bookId}")
-    public ResponseEntity<BookLookupResponseDto> findBookById(@PathVariable String bookId) {
+    @GetMapping("/v1/phone/{phoneId}")
+    public ResponseEntity<PhoneLookupResponseDto> findBookById(@PathVariable String phoneId) {
         long startTime = System.currentTimeMillis();
         log.debug("startTime : {}", startTime);
 
-        if (bookId.equals("1")) {
-            bookId = null;
+        if (phoneId.equals("1")) {
+            phoneId = null;
         }
-        BookLookupResponseDto bookLookupResponseDto = bookService.findBookById(bookId);
+        PhoneLookupResponseDto phoneLookupResponseDto = phoneService.findBookById(phoneId);
 
         long endTime = System.currentTimeMillis();
         log.debug("endTime : {}", endTime);
@@ -51,15 +49,15 @@ public class BookController {
         log.debug("elapsedTIme : {}", endTime - startTime);
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(bookLookupResponseDto);
+                .body(phoneLookupResponseDto);
     }
 
-    @DeleteMapping("/v1/books/{bookId}")
-    public ResponseEntity<Void> deleteBookById(@PathVariable String bookId) {
+    @DeleteMapping("/v1/phone/{phoneId}")
+    public ResponseEntity<Void> deleteBookById(@PathVariable String phoneId) {
         long startTime = System.currentTimeMillis();
         log.debug("startTime : {}", startTime);
 
-        bookService.deleteBookById(bookId);
+        phoneService.deleteBookById(phoneId);
 
         long endTime = System.currentTimeMillis();
         log.debug("endTime : {}", endTime);

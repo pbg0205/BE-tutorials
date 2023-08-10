@@ -1,0 +1,5 @@
+### 메세지 동기 테스트
+GET http://localhost:8080/api/messages/async/simple?message = sample
+
+### 메세지 비동기 테스트
+GET http://localhost:8080/api/messages/async/completable-future?message = sample

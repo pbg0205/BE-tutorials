@@ -18,10 +18,11 @@ public class AsyncConfig implements AsyncConfigurer {
     @Bean
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(7);
-        executor.setMaxPoolSize(42);
-        executor.setQueueCapacity(11);
+        executor.setCorePoolSize(8);
+        executor.setMaxPoolSize(16);
+        executor.setQueueCapacity(100);
         executor.setThreadNamePrefix("MyExecutor-");
+        executor.setTaskDecorator(new SimpleTaskDecorator());
         /**
          * - 빈으로 선언할 경우, initialize() 를 자동 호출하므로 명시할 필요없음.
          * - initialize() : Set up the ExecutorService.
@@ -36,7 +37,8 @@ public class AsyncConfig implements AsyncConfigurer {
         taskExecutor.setCorePoolSize(3); // 기본 쓰레드 수
         taskExecutor.setMaxPoolSize(10); // 최대 쓰레드 수
         taskExecutor.setQueueCapacity(100); // Queue 사이즈
-        taskExecutor.setThreadNamePrefix("async-executor-");
+        taskExecutor.setThreadNamePrefix("message-async-task-");
+        taskExecutor.setTaskDecorator(new SimpleTaskDecorator());
         return taskExecutor;
     }
 
@@ -47,6 +49,7 @@ public class AsyncConfig implements AsyncConfigurer {
         taskExecutor.setMaxPoolSize(10); // 최대 쓰레드 수
         taskExecutor.setQueueCapacity(100); // Queue 사이즈
         taskExecutor.setThreadNamePrefix("async-executor-");
+        taskExecutor.setTaskDecorator(new SimpleTaskDecorator());
         return taskExecutor;
     }
 

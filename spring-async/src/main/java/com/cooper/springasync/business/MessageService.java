@@ -1,39 +1,27 @@
 package com.cooper.springasync.business;
 
+import com.cooper.springasync.converter.CooperMessageConverter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Async;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CompletableFuture;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MessageService {
 
-    @Async("messageThreadPoolExecutor")
-    public void getMessageVoid(String message) {
-        System.out.println("this.getClass : " + this.getClass());
-        System.out.println("this : " + this);
-        System.out.println("current thread name : " + Thread.currentThread().getName());
-        System.out.println(message);
+    private final CooperMessageConverter cooperMessageConverter;
+
+    public String getMessage(String message) {
+        log.info("received message: {}", message);
+        return cooperMessageConverter.convertMessage(message);
     }
 
-    @Async("messageThreadPoolExecutor")
-    public void getMessageException(String message) {
-        System.out.println("this.getClass : " + this.getClass());
-        System.out.println("this : " + this);
-        System.out.println("current thread name : " + Thread.currentThread().getName());
-        throw new RuntimeException("비동기 예외 발생");
-    }
-
-    @Async("messageThreadPoolExecutor")
     public CompletableFuture<String> getMessageCompletableFuture(String message) {
-        return CompletableFuture.supplyAsync(() -> {
-            System.out.println("this.getClass : " + this.getClass());
-            System.out.println("this : " + this);
-            System.out.println("current thread name : " + Thread.currentThread().getName());
-            return message;
-        });
+        log.info("received message: {}", message);
+        return cooperMessageConverter.convertMessageWithListenableFuture(message);
     }
 
 }

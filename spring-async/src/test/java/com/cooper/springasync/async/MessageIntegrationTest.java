@@ -1,6 +1,7 @@
 package com.cooper.springasync.async;
 
 import com.cooper.springasync.business.MessageService;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,18 +19,13 @@ public class MessageIntegrationTest {
 
     @Test
     void getMessageVoid() {
-        messageService.getMessageVoid("cooper async");
+        messageService.getMessage("cooper async");
     }
 
     @Test
     void getMessageCompletableFuture() throws ExecutionException, InterruptedException {
         CompletableFuture<String> future = messageService.getMessageCompletableFuture("cooper async");
         assertThat(future.get()).isEqualTo("cooper async");
-    }
-
-    @Test
-    void getMessageException() {
-        messageService.getMessageException("cooper");
     }
 
 }

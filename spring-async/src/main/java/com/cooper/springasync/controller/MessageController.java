@@ -20,14 +20,16 @@ public class MessageController {
 
     @GetMapping("/api/messages/async/simple")
     public ResponseEntity<String> sendMessageSync(String message) {
+        log.info("request message: {}", message);
         return ResponseEntity.ok(messageService.getMessage(message));
     }
 
     @GetMapping("/api/messages/async/completable-future")
     public ResponseEntity<String> sendMessageAsync(String message) throws ExecutionException, InterruptedException, TimeoutException {
+        log.info("request message: {}", message);
         CompletableFuture<String> messageCompletableFuture = messageService.getMessageCompletableFuture(message);
         messageCompletableFuture.thenApply((receivedMessage) -> {
-            log.info("received message: {}", receivedMessage);
+            log.info("response message: {}", receivedMessage);
             return receivedMessage;
         });
 

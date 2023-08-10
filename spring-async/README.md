@@ -142,6 +142,15 @@ public class SimpleTaskDecorator implements TaskDecorator {
 
 <br>
 
+`요청의 MDC 가 잘 전달된 것을 확인할 수 있다!!`
+- MDC(Mapped Diagnostic Context)
+  - Map 형식을 이용하여 클라이언트 특징적인 데이터를 저장하기 위한 메커니즘.
+  - slf4j,logback,log4j2 등 Logger(로거)에서 MDC를 제공.
+
+![console.png](images/img01.png)
+
+<br>
+
 ## References
 
 - [제이온(우테코 3기) - [Spring] @Async 사용 방법](https://steady-coding.tistory.com/611)

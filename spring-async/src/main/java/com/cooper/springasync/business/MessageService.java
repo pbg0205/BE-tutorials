@@ -15,12 +15,12 @@ public class MessageService {
     private final CooperMessageConverter cooperMessageConverter;
 
     public String getMessage(String message) {
-        log.info("received message: {}", message);
+        log.info("message: {}", message);
         return cooperMessageConverter.convertMessage(message);
     }
 
     public CompletableFuture<String> getMessageCompletableFuture(String message) {
-        log.info("received message: {}", message);
+        log.info("message: {}", message);
         return cooperMessageConverter.convertMessageWithListenableFuture(message);
     }
 

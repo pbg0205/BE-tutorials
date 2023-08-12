@@ -1,0 +1,16 @@
+### whale url test1
+GET localhost:8080/api/whale
+Content-Type: application/json
+
+
+### whale url test2
+GET localhost:8080/api/whale?whaleName=cooper
+Content-Type: application/json
+
+### whale url test3
+GET localhost:8080/api/whale/bye?whaleName=cooper
+Content-Type: application/json
+
+### exception url test
+GET localhost:8080/api/exception
+Content-Type: application/json

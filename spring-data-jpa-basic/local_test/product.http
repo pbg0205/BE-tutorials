@@ -10,7 +10,7 @@ Content-Type: application/json
 
 ### 상품 조회
 
-GET localhost:8080/api/products?id=20
+GET localhost:8080/api/products?id=1
 Content-Type: application/json
 
 ### 상품 제거

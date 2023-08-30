@@ -8,12 +8,11 @@ spring:
           in_clause_parameter_padding: true # 2^n padding option
     open-in-view: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: create-drop
   datasource:
     url: jdbc:mysql://localhost:3306/cooper_db
     username: root
     password: cooper2021
-    driver-class-name: com.mysql.cj.jdbc.Driver
 #  sql:
 #    init:
 #      mode: always
@@ -22,3 +21,8 @@ spring:
 #      data-locations:
 #        - classpath:schema/data_dept.sql
 #        - classpath:schema/data_emp.sql
+
+logging:
+  level:
+    org.hibernate.event: trace
+    org.springframework.data.jpa: trace

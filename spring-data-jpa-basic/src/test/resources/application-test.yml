@@ -8,7 +8,7 @@ spring:
           in_clause_parameter_padding: true # 2^n padding option
     open-in-view: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: create-drop
 
     defer-datasource-initialization: true
     url: jdbc:mysql://localhost:3306/cooper_db

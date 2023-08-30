@@ -5,12 +5,15 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Entity
 @Getter
@@ -27,6 +30,12 @@ public class Product {
 
     @ColumnDefault("0")
     private int quantity;
+
+    @CreationTimestamp
+    private Timestamp createdTime;
+
+    @UpdateTimestamp
+    private Timestamp updateTime;
 
     public Product(String name, int quantity) {
         this.name = name;

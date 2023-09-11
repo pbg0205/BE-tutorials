@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -62,6 +63,27 @@ class StudentRepositoryTest {
 				() -> assertThat(findStudent4.getName()).isEqualTo(student4.getName())
 		);
 
+	}
+
+	@Test
+	@DisplayName("학생 별 수상 내용을 조회한다")
+	void findAllByStudentId() {
+		Student student1 = testEntityManager.persist(new Student("학생1", "태그1"));
+		Award award1 = testEntityManager.persist(new Award("수상1"));
+		Award award2 = testEntityManager.persist(new Award("수상2"));
+
+		student1.addAward(award1);
+		student1.addAward(award2);
+
+		Student student2 = testEntityManager.persist(new Student("학생2", "태그1"));
+		Award award3 = testEntityManager.persist(new Award("수상3"));
+		Award award4 = testEntityManager.persist(new Award("수상4"));
+
+		student2.addAward(award3);
+		student2.addAward(award4);
+
+		List<Student> students = studentRepository.findAllByStudentId(null);
+		assertThat(students).hasSize(2);
 	}
 
 	private class StudentRowMapper implements RowMapper<Student> {

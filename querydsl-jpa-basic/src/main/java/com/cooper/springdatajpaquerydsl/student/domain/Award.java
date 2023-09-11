@@ -29,12 +29,8 @@ public class Award {
     @Setter
     private Student student;
 
-    private Award(String name) {
+    public Award(String name) {
         this.name = name;
-    }
-
-    public static Award of(String name) {
-        return new Award(name);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.cooper.springdatajpaquerydsl.student.domain;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -13,13 +14,20 @@ public class StudentRepositoryImpl implements StudentRepositoryCustom {
 
     private final JPAQueryFactory jpaQueryFactory;
 
+    /**
+     * 연관관계 조인을 선언할 경우, 중복을 제거해야 한다.
+     */
     @Override
-    public List<Student> findByAwardName(final Long studentId) {
-        return jpaQueryFactory.select(student)
+    public List<Student> findAllByStudentId(final Long studentId) {
+        return jpaQueryFactory.select(student).distinct()
                 .from(student)
                 .join(student.awards, award)
-                .where(student.id.eq(studentId))
+                .where(eqStudentId(studentId))
                 .fetch();
+    }
+
+    private BooleanExpression eqStudentId(Long studentId) {
+        return (studentId == null) ? null : student.id.eq(studentId);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.cooper.springdatajpaquerydsl.student.domain;
 
+import com.cooper.springdatajpaquerydsl.student.dto.StudentLookupResponse;
+
 import java.util.List;
 
 public interface StudentRepositoryCustom {
@@ -8,4 +10,5 @@ public interface StudentRepositoryCustom {
 
     void updateStudentName(String tagName, String updateName);
 
+    List<StudentLookupResponse> findAllByStudentIds(List<Long> studentIds);
 }

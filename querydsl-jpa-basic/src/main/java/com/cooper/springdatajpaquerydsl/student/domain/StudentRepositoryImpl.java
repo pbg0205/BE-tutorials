@@ -1,5 +1,9 @@
 package com.cooper.springdatajpaquerydsl.student.domain;
 
+import com.cooper.springdatajpaquerydsl.student.dto.AwardLookupResponse;
+import com.cooper.springdatajpaquerydsl.student.dto.StudentLookupResponse;
+import com.querydsl.core.group.GroupBy;
+import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +12,7 @@ import java.util.List;
 
 import static com.cooper.springdatajpaquerydsl.student.domain.QAward.award;
 import static com.cooper.springdatajpaquerydsl.student.domain.QStudent.student;
+import static com.querydsl.core.group.GroupBy.groupBy;
 
 @RequiredArgsConstructor
 public class StudentRepositoryImpl implements StudentRepositoryCustom {
@@ -36,6 +41,23 @@ public class StudentRepositoryImpl implements StudentRepositoryCustom {
                 .set(student.name, updateName)
                 .where(student.tagName.eq(tagName))
                 .execute();
+    }
+
+    @Override
+    public List<StudentLookupResponse> findAllByStudentIds(List<Long> studentIds) {
+        return jpaQueryFactory.select(student)
+                .from(student)
+                .leftJoin(award).on(student.id.eq(award.student.id))
+                .where(student.id.in(studentIds))
+                .transform(groupBy(student.id)
+                        .list(Projections.constructor(StudentLookupResponse.class,
+                                student.id,
+                                student.name,
+                                student.tagName,
+                                GroupBy.list(
+                                        Projections.constructor(AwardLookupResponse.class,
+                                                award.id,
+                                                award.name)))));
     }
 
 }

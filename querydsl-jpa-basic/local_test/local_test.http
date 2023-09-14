@@ -1,0 +1,31 @@
+### 학생 생성
+POST http://localhost:8080/api/v1/students
+Content-Type: application/json
+
+{
+  "name" : "cooper",
+  "tagName" : "tag"
+}
+
+
+### 수상 추가
+POST http://localhost:8080/api/v1/students/award
+Content-Type: application/json
+
+{
+  "name" : "수상"
+}
+
+
+### 수상 할당
+PUT http://localhost:8080/api/v1/students/award/assign
+Content-Type: application/json
+
+{
+  "studentId" : 1,
+  "awardId" : 1
+}
+
+### 학생 조회하기
+GET http://localhost:8080/api/v2/students?studentIds=1,2,3,4,5
+Content-Type: application/json

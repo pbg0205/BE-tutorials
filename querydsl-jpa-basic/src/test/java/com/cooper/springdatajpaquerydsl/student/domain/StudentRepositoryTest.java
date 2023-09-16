@@ -86,6 +86,34 @@ class StudentRepositoryTest {
 		assertThat(students).hasSize(2);
 	}
 
+	@Test
+	@DisplayName("pessimistic lock(shared lock) 을 통해 조회한다")
+	void findAllByStudentIdWithPessimisticLockRead() {
+		//given
+		Student savedStudent = testEntityManager.persist(new Student("학생1", "태그1"));
+
+		//when
+		Student student = studentRepository.findAllByStudentIdWithPessimisticLockRead(savedStudent.getId());
+
+		//then
+		assertThat(student).extracting("id", "name")
+				.contains(1L, "학생1");
+	}
+
+	@Test
+	@DisplayName("pessimistic lock(exclusive lock) 을 통해 조회한다")
+	void findAllByStudentIdWithPessimisticLockWrite() {
+		//given
+		Student savedStudent = testEntityManager.persist(new Student("학생1", "태그1"));
+
+		//when
+		Student student = studentRepository.findAllByStudentIdWithPessimisticLockWrite(savedStudent.getId());
+
+		//then
+		assertThat(student).extracting("id", "name")
+				.contains(1L, "학생1");
+	}
+
 	private class StudentRowMapper implements RowMapper<Student> {
 
 		@Override

@@ -19,3 +19,8 @@ logging:
     org.springframework.batch: debug
 
 ---
+
+logging:
+  level:
+    com.zaxxer.hikari: TRACE
+    com.zaxxer.hikari.HikariConfig: DEBUG

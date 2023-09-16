@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 import java.sql.Timestamp;
 
 @Entity
@@ -35,6 +36,7 @@ public class Product {
     private Timestamp createdTime;
 
     @UpdateTimestamp
+    @Version
     private Timestamp updateTime;
 
     public Product(String name, int quantity) {

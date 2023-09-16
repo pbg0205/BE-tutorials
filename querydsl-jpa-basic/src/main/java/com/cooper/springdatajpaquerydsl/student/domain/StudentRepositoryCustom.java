@@ -11,4 +11,8 @@ public interface StudentRepositoryCustom {
     void updateStudentName(String tagName, String updateName);
 
     List<StudentLookupResponse> findAllByStudentIds(List<Long> studentIds);
+
+    Student findAllByStudentIdWithPessimisticLockWrite(Long studentId);
+
+    Student findAllByStudentIdWithPessimisticLockRead(Long studentId);
 }

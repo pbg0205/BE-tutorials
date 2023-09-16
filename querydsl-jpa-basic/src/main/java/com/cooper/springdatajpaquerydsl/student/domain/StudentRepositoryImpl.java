@@ -8,6 +8,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
+import javax.persistence.LockModeType;
 import java.util.List;
 
 import static com.cooper.springdatajpaquerydsl.student.domain.QAward.award;
@@ -29,10 +30,6 @@ public class StudentRepositoryImpl implements StudentRepositoryCustom {
                 .join(student.awards, award)
                 .where(eqStudentId(studentId))
                 .fetch();
-    }
-
-    private BooleanExpression eqStudentId(Long studentId) {
-        return (studentId == null) ? null : student.id.eq(studentId);
     }
 
     @Override
@@ -58,6 +55,32 @@ public class StudentRepositoryImpl implements StudentRepositoryCustom {
                                         Projections.constructor(AwardLookupResponse.class,
                                                 award.id,
                                                 award.name)))));
+    }
+
+    @Override
+    public Student findAllByStudentIdWithPessimisticLockWrite(Long studentId) {
+        return jpaQueryFactory.select(student).distinct()
+                .from(student)
+                .leftJoin(student.awards, award)
+                .where(eqStudentId(studentId))
+                .setLockMode(LockModeType.PESSIMISTIC_WRITE)
+                .setHint("jakarta.persistence.lock.timeout", "3000")
+                .fetchOne();
+    }
+
+    @Override
+    public Student findAllByStudentIdWithPessimisticLockRead(Long studentId) {
+        return jpaQueryFactory.select(student).distinct()
+                .from(student)
+                .leftJoin(student.awards, award)
+                .where(eqStudentId(studentId))
+                .setLockMode(LockModeType.PESSIMISTIC_READ)
+                .setHint("jakarta.persistence.lock.timeout", "3000")
+                .fetchOne();
+    }
+
+    private BooleanExpression eqStudentId(Long studentId) {
+        return (studentId == null) ? null : student.id.eq(studentId);
     }
 
 }

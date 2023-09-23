@@ -5,6 +5,8 @@ plugins {
 group 'com.cooper'
 version '1.0-SNAPSHOT'
 
+sourceCompatibility=21
+
 repositories {
     mavenCentral()
 }

@@ -25,6 +25,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "org.aspectj:aspectjrt:1.9.7"
+    implementation "org.aspectj:aspectjweaver:1.9.7"
 
 }
 

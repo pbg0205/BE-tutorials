@@ -1,6 +1,8 @@
 package com.example.springcore.spel;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
@@ -19,6 +21,11 @@ public class SpelRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        handleCarPark();
+        handleCar();
+    }
+
+    private void handleCarPark() {
         Car car = new Car("Good manufacturer", "Model 3", 2014);
         CarPark carPark = new CarPark();
         carPark.add(car);
@@ -31,6 +38,17 @@ public class SpelRunner implements CommandLineRunner {
 
         log.debug("after car = {}", car);
         log.debug("cars[0] = {}", carPark.getCars().get(0));
+
+    }
+
+    private void handleCar() {
+        Car car = new Car("Good manufacturer", "Model 1", 2014);
+        ExpressionParser expressionParser = new SpelExpressionParser();
+        Expression expression = expressionParser.parseExpression("model");
+
+        EvaluationContext context = new StandardEvaluationContext(car);
+        String result = (String) expression.getValue(context);
+        log.debug("car.make : {}", result);
     }
 
 }

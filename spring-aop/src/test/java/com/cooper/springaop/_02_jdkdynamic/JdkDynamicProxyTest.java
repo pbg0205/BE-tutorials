@@ -1,4 +1,4 @@
-package com.cooper.springaop.jdkdynamic;
+package com.cooper.springaop._02_jdkdynamic;
 
 import java.lang.reflect.Proxy;
 
@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
-import com.cooper.springaop.jdkdynamic.code.AInterface;
-import com.cooper.springaop.jdkdynamic.code.AInterfaceImpl;
-import com.cooper.springaop.jdkdynamic.code.BInterface;
-import com.cooper.springaop.jdkdynamic.code.BInterfaceImpl;
-import com.cooper.springaop.jdkdynamic.code.TimeInvocationHandler;
+import com.cooper.springaop._02_jdkdynamic.code.AInterface;
+import com.cooper.springaop._02_jdkdynamic.code.AInterfaceImpl;
+import com.cooper.springaop._02_jdkdynamic.code.BInterface;
+import com.cooper.springaop._02_jdkdynamic.code.BInterfaceImpl;
+import com.cooper.springaop._02_jdkdynamic.code.TimeInvocationHandler;
 
 @Slf4j
 public class JdkDynamicProxyTest {
@@ -23,7 +23,7 @@ public class JdkDynamicProxyTest {
 		AInterface proxy = (AInterface)Proxy.newProxyInstance(
 			AInterface.class.getClassLoader(), // ClassLoader 정보
 			new Class[] {AInterface.class}, // 인터페이스
-			handler // 핸들러 로직
+			handler // 핸들러 로직 (부가로직)
 		);
 
 		proxy.call();
@@ -48,10 +48,10 @@ public class JdkDynamicProxyTest {
 		BInterface proxy = (BInterface)Proxy.newProxyInstance(
 			BInterface.class.getClassLoader(), // ClassLoader 정보
 			new Class[] {BInterface.class}, // 인터페이스
-			handler // 핸들러 로직
+			handler // 핸들러 로직 (부가 로직)
 		);
 
-		proxy.call();
+		proxy.call(); // 호출
 
 		log.info("targetClass={}", target.getClass());
 		log.info("proxyClass={}", proxy.getClass());

@@ -1,4 +1,4 @@
-package com.cooper.springaop.reflection;
+package com.cooper.springaop._01_reflection;
 
 import java.lang.reflect.Method;
 
@@ -31,7 +31,7 @@ class ReflectionTest {
 		/**
 		 * 내부 클래스 구분을 위해 $ 를 추가한다.
 		 */
-		Class helloClass = Class.forName("com.cooper.springaop.reflection.ReflectionTest$Hello");
+		Class helloClass = Class.forName("com.cooper.springaop._01_reflection.ReflectionTest$Hello");
 
 		// invoke callA
 		Hello target = new Hello();
@@ -54,7 +54,7 @@ class ReflectionTest {
 	 */
 	@Test
 	void reflection03() throws Exception {
-		Class helloClass = Class.forName("com.cooper.springaop.reflection.ReflectionTest$Hello");
+		Class helloClass = Class.forName("com.cooper.springaop._01_reflection.ReflectionTest$Hello");
 
 		// invoke callA
 		Hello target = new Hello();

@@ -1,4 +1,4 @@
-package com.cooper.springaop.cglib.code;
+package com.cooper.springaop.code;
 
 import lombok.extern.slf4j.Slf4j;
 

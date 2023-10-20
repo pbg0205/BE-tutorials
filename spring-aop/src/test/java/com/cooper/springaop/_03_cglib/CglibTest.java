@@ -1,12 +1,12 @@
-package com.cooper.springaop.cglib;
+package com.cooper.springaop._03_cglib;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.cglib.proxy.Enhancer;
 
 import lombok.extern.slf4j.Slf4j;
 
-import com.cooper.springaop.cglib.code.ConcreteService;
-import com.cooper.springaop.cglib.code.TimeMethodInterceptor;
+import com.cooper.springaop.code.ConcreteService;
+import com.cooper.springaop.code.TimeMethodInterceptor;
 
 @Slf4j
 public class CglibTest {

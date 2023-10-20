@@ -1,4 +1,4 @@
-package com.cooper.springaop.jdkdynamic.code;
+package com.cooper.springaop._02_jdkdynamic.code;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

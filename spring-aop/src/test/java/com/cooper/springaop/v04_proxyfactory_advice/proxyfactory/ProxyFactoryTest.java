@@ -1,4 +1,4 @@
-package com.cooper.springaop._04_proxyfactory_advice.proxyfactory;
+package com.cooper.springaop.v04_proxyfactory_advice.proxyfactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,7 +10,7 @@ import org.springframework.aop.support.AopUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import com.cooper.springaop.code.ConcreteService;
-import com.cooper.springaop._04_proxyfactory_advice.advice.TimeAdvice;
+import com.cooper.springaop.v04_proxyfactory_advice.advice.TimeAdvice;
 import com.cooper.springaop.code.ServiceImpl;
 import com.cooper.springaop.code.ServiceInterface;
 

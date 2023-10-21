@@ -1,4 +1,4 @@
-package com.cooper.springaop._02_jdkdynamic;
+package com.cooper.springaop.v02_jdkdynamic;
 
 import java.lang.reflect.Proxy;
 
@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
-import com.cooper.springaop._02_jdkdynamic.code.AInterface;
-import com.cooper.springaop._02_jdkdynamic.code.AInterfaceImpl;
-import com.cooper.springaop._02_jdkdynamic.code.BInterface;
-import com.cooper.springaop._02_jdkdynamic.code.BInterfaceImpl;
-import com.cooper.springaop._02_jdkdynamic.code.TimeInvocationHandler;
+import com.cooper.springaop.v02_jdkdynamic.code.AInterface;
+import com.cooper.springaop.v02_jdkdynamic.code.AInterfaceImpl;
+import com.cooper.springaop.v02_jdkdynamic.code.BInterface;
+import com.cooper.springaop.v02_jdkdynamic.code.BInterfaceImpl;
+import com.cooper.springaop.v02_jdkdynamic.code.TimeInvocationHandler;
 
 @Slf4j
 public class JdkDynamicProxyTest {

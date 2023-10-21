@@ -1,4 +1,4 @@
-package com.cooper.springaop._05_advisor;
+package com.cooper.springaop.v05_advisor;
 
 import java.lang.reflect.Method;
 
@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import com.cooper.springaop.code.ServiceImpl;
 import com.cooper.springaop.code.ServiceInterface;
-import com.cooper.springaop._04_proxyfactory_advice.advice.TimeAdvice;
+import com.cooper.springaop.v04_proxyfactory_advice.advice.TimeAdvice;
 
 @Slf4j
 public class AdvisorTest {

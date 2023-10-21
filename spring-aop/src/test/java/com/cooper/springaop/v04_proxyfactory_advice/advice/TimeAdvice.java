@@ -1,4 +1,4 @@
-package com.cooper.springaop._04_proxyfactory_advice.advice;
+package com.cooper.springaop.v04_proxyfactory_advice.advice;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;

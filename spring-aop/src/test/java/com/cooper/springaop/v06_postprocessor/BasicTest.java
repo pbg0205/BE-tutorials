@@ -1,4 +1,4 @@
-package com.cooper.springaop._06_postprocessor;
+package com.cooper.springaop.v06_postprocessor;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

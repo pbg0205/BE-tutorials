@@ -1,0 +1,5 @@
+### 아이템 등록 확인
+GET http://localhost:8080/v1/request?itemId=1
+
+### 아이템 등록 확인
+GET http://localhost:8080/v1/no-log

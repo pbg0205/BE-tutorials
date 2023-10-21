@@ -1,4 +1,4 @@
-package com.cooper.springaop._05_advisor;
+package com.cooper.springaop.v05_advisor;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;

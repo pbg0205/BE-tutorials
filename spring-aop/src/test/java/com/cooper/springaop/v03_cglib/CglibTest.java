@@ -1,4 +1,4 @@
-package com.cooper.springaop._03_cglib;
+package com.cooper.springaop.v03_cglib;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.cglib.proxy.Enhancer;

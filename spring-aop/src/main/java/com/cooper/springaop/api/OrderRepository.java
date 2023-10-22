@@ -1,15 +1,17 @@
 package com.cooper.springaop.api;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class OrderRepository {
 
-	private HashMap<String, String> repository = new HashMap<>();
+	private Map<String, String> repository = new HashMap<>();
 
 	public String save(String key, String value) {
-		return repository.put(key, value);
+		repository.put(key, value);
+		return repository.get(key);
 	}
 }

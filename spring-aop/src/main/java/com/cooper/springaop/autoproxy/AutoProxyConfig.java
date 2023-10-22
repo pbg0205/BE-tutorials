@@ -7,7 +7,7 @@ import org.springframework.aop.support.NameMatchMethodPointcut;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.cooper.springaop.log.LogTraceAdvice;
+import com.cooper.springaop.advice.ControllerLogTraceAdvice;
 
 @Configuration
 public class AutoProxyConfig {
@@ -16,7 +16,7 @@ public class AutoProxyConfig {
 	public Advisor advisor01() {
 		NameMatchMethodPointcut pointcut = new NameMatchMethodPointcut();
 		pointcut.setMappedNames("request*", "order*", "save*");
-		LogTraceAdvice advice = new LogTraceAdvice();
+		ControllerLogTraceAdvice advice = new ControllerLogTraceAdvice();
 		//advisor = pointcut + advice
 		return new DefaultPointcutAdvisor(pointcut, advice);
 	}
@@ -27,8 +27,8 @@ public class AutoProxyConfig {
 	@Bean
 	public Advisor advisor02() {
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-		pointcut.setExpression("execution(* com.cooper.springaop..*(..)) && !execution(* com.cooper.springaop..noLog(..))");
-		LogTraceAdvice advice = new LogTraceAdvice();
+		pointcut.setExpression("execution(* com.cooper.springaop.api.*Controller*.*(..)) && !execution(* com.cooper.springaop.api..noLog(..))");
+		ControllerLogTraceAdvice advice = new ControllerLogTraceAdvice();
 		//advisor = pointcut + advice
 		return new DefaultPointcutAdvisor(pointcut, advice);
 	}

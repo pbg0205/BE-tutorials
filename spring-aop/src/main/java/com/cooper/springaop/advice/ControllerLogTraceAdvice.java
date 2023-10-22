@@ -1,4 +1,4 @@
-package com.cooper.springaop.log;
+package com.cooper.springaop.advice;
 
 import java.lang.reflect.Method;
 
@@ -8,7 +8,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class LogTraceAdvice implements MethodInterceptor {
+public class ControllerLogTraceAdvice implements MethodInterceptor {
 
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		try {

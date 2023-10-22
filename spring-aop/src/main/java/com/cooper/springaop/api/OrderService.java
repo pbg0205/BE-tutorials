@@ -4,13 +4,16 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 
+import com.cooper.springaop.annotation.CooperTransactional;
+
 @Service
 @RequiredArgsConstructor
+@CooperTransactional
 public class OrderService {
 
 	private final OrderRepository orderRepository;
 
-	public String order(String key, String value) {
+	public String orderItem(String key, String value) {
 		return orderRepository.save(key, value);
 	}
 }

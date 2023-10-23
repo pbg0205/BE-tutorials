@@ -19,6 +19,6 @@ public class OrderController {
 
 	@GetMapping("/v1/no-log")
 	String noLog() {
-		return "ok";
+		return orderService.noLog();
 	}
 }

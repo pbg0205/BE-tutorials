@@ -11,12 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Aspect
 @Component
-public class TransactionAspect {
+public class CooperTransactionalAnnotationAspect {
 
+	// 메서드가 주어진 어노테이션을 가지고 있는 조인 포인트를 매칭
 	@Pointcut("@annotation(com.cooper.springaop.annotation.CooperTransactional)")
-	public void cooperTransaction(){}
+	public void cooperTransactionAnnotation(){}
 
-	@Around("cooperTransaction()")
+	@Around("cooperTransactionAnnotation()")
 	public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
 		log.info("{} transaction start", joinPoint.getSignature());
 

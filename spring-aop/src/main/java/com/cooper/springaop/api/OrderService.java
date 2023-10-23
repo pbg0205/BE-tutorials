@@ -13,7 +13,12 @@ public class OrderService {
 
 	private final OrderRepository orderRepository;
 
+	@CooperTransactional
 	public String orderItem(String key, String value) {
 		return orderRepository.save(key, value);
+	}
+
+	public String noLog() {
+		return "ok";
 	}
 }

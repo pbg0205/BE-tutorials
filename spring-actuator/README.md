@@ -1076,7 +1076,7 @@ http://localhost:8080/actuator/metrics/http.server.requests?tag=uri:/log&tag=sta
         tomcat:
           mbeanregistry:
             enabled: true
-```
+    ```
 
 ### (8) 그 외 메트릭
 1. HTTP 클라이언트 메트릭( RestTemplate , WebClient ) 캐시 메트릭
@@ -1085,5 +1085,132 @@ http://localhost:8080/actuator/metrics/http.server.requests?tag=uri:/log&tag=sta
 4. 몽고DB 메트릭
 5. 레디스 메트릭
 
+# 3. 프로메테우스 (Prometheus)
 
+## [1] 프로메테우스 설치
 
+### (1) 설치 방법
+
+1. [github prometheus masos 2.47.2(2023.11.04 기준)](https://github.com/prometheus/prometheus/releases/tag/v2.47.2)
+2. 해당 디렉토리에 들어가서 prometheus 설치 : `./prometheus`
+3. 마이크로미터 프로메테우스 구현 라이브러리 추가
+    ```groovy
+    implementation 'io.micrometer:micrometer-registry-prometheus' //추가
+    ```
+4. `localhost:8080/actuator/prometheus` 을 라이브러리 동작 확인
+
+### (2) prometheus.yml 설정
+
+- prometheus.yml 설정을 통해
+
+```yaml
+global:
+    scrape_interval: 15s # global 수집 주기
+    evaluation_interval: 15s # alert을 보낼지 말지 메트릭을 보고 판단하는 주기
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+rule_files:
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"] 
+#추가
+  - job_name: "spring-actuator"
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 1s
+    static_configs:
+      - targets: ['localhost:8080']
+```
+- `job_name` : 수집하는 이름이다. 임의의 이름을 사용하면 된다.
+- `metrics_path` : 수집할 경로를 지정한다.
+- `scrape_interval` : 수집할 주기를 설정한다.
+- `targets` : 수집할 서버의 IP, PORT를 지정한다.
+
+(이후 서버를 재시작 한다.)
+
+> 운영 환경에서는 10s ~ 1m 정도를 권장
+
+### (3) prometheus 연동 확인
+
+1. http://localhost:9090/config : prometheus.yml 변경 내용 확인 
+2. http://localhost:9090/targets 을 통해 정상 연동 확인
+
+<img width="500" alt="image" src="https://github.com/pbg0205/BE-tutorials/assets/48561660/c61ae147-ed0a-4620-b273-70e64e278f2b">
+
+# 3 프로메테우스 - 기본 기능 
+
+- Table : Evaluation time 을 수정해서 과거 시간 조회 가능 
+- Graph : 메트릭을 그래프로 조회 가능
+
+<br>
+
+- Graph tab 에서 `http_server_requests_seconds_count` 확인
+- 태그(tag) : 각 메트리 정보를 구분하기 위한 태그(micrometer: tag / prometheus : label)
+
+<img width="500" alt="image" src="https://github.com/pbg0205/BE-tutorials/assets/48561660/22894f44-5d08-4b6f-a359-71fb7839be82">
+
+## [1] 필터
+
+- 레이블을 기준으로 검색 가능 (필터는 `{}` 문법을 사용한다.)
+
+### (1) 레이블 일치 연산자
+
+- `=` : 제공된 문자열과 정확히 동일한 레이블 선택
+- `!=` : 제공된 문자열과 같지 않은 레이블 선택
+- `=~` : 제공된 문자열과 정규식 일치하는 레이블 선택
+- `!~` : 제공된 문자열과 정규식 일치하지 않는 레이블 선택
+
+### (2) 연산자 쿼리와 함수
+
+- `+` (덧셈)
+- `-` (빼기)
+- `*` (곱셈)
+- `/` (분할)
+- `%` (모듈로)
+- `^` (승수/지수)
+
+### (3) 연산자 쿼리와 함수
+
+1. `sum` : 값의 합계를 구한다.
+   - e.g. sum (http_server_requests_seconds_count) 
+2. `sum by` : group by 와 유사한 기능
+   - e.g. sum by(method, status)(http_server_requests_seconds_count)
+   - 결과 예시
+     ```
+     {method="GET", status="200"}
+     ```
+3. `count` : 메트릭 자체의 수 카운트
+   - count(http_server_requests_seconds_count)
+4. topk : 상위 n개의 메트릭 조회
+   - topk(3, http_server_requests_seconds_count)
+5. 오프셋 수정자
+   - http_server_requests_seconds_count offset 10m
+   - 현재를 기준으로 특정 과거 시점의 데이터를 반환
+6. 범위 벡터 선택기
+   - http_server_requests_seconds_count[1m]
+   - [1m] : 지난 1분간의 모든 기록값을 선택
+   - 참고로 범위 벡터 선택기는 차트에 바로 표현할 수 없다.
+
+<br>
+
+# 4. 프로메테우스 - 게이지와 카운터
+
+1. `게이지(Gauge)`
+   - 임의로 오르내일 수 있는 값
+   - 예) CPU 사용량, 메모리 사용량, 사용중인 커넥션
+2. `카운터(Counter)`
+   - 단순하게 증가하는 단일 누적 값
+   - 예) HTTP 요청 수, 로그 발생 수
+3. `increase()`
+   - 지정한 시간 단위별로 증가를 확인할 수 있다.
+   - increase(http_server_requests_seconds_count{uri="/log"}[1m])
+     - (마지막에 [시간] 을 사용해서 범위 벡터를 선택)
+4. `rate()`
+   - 범위 백터에서 초당 평균 증가율을 계산
+   - increase(data[1m])
+     - [1m] 이라고 하면 60초가 기준이 되므로 60을 나눈 수
+5. `irate()`
+   - 범위 벡터에서 초당 순간 증가율을 계산 (급격하게 증가한 내용을 확인하기 좋음)

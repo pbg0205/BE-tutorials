@@ -32,6 +32,8 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
 
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+
     runtimeOnly 'com.h2database:h2'
 }
 

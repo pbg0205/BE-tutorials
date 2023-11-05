@@ -1214,3 +1214,157 @@ scrape_configs:
      - [1m] 이라고 하면 60초가 기준이 되므로 60을 나눈 수
 5. `irate()`
    - 범위 벡터에서 초당 순간 증가율을 계산 (급격하게 증가한 내용을 확인하기 좋음)
+
+<br>
+
+# 5. 그라파나
+
+- 오픈소스 메트릭 데이터 시각화 도구
+- 프로메테우스를 통해서 데이터를 조회하고 보여주는 역할을 한다. (대시보드 툴)
+
+## [1] 그라파나 설치 및 실행
+
+1. 다운로드 (mac os 기준)
+    - grafana download : https://grafana.com/grafana/download?platform=mac
+    ```bash
+    curl -O https://dl.grafana.com/enterprise/release/grafana-enterprise-10.2.0.darwin-amd64.tar.gz
+    tar -zxvf grafana-enterprise-10.2.0.darwin-amd64.tar.gz
+    ```
+2. 실행 (mac os 기준)
+   - 압축을 푼 위치 기준 bin directory 이동
+   - 명령어 실행
+     ```bash
+     ./grafana-server
+     ```
+3. 접속
+   - `localhost:3000` 으로 서버 접속
+   - 기본 계정 정보  : admin/admin => 비밀번호 번경 탭 => cooper2021
+
+<img src="images/grafana-diagram.png" width="600">
+
+## [2] 그라파나 데이터소스 추가
+
+### (1) 그라파나 데이터소스 추가 화면
+
+1. Configuration > Data sources 선택
+2. Add data source 선택
+3. Prometheus 선택
+
+### (2) 그라파나 데이터소스 설정
+
+- URL : http://localhost:9090
+- 별도의 설정이 없을 경우 Save & test 선택
+
+### (3) 대시보드 만들기
+
+- 대시보드 : 큰틀 / 패널 : 그 안에 모듈처럼 들어가는 실제 그래프
+
+1. 필요 사전 작업
+    1. 애플리케이션 실행
+   2. 프로메테우스 실행
+   3. 그라파나 실행
+2. 대시보드 저장
+   1. Dashboards 메뉴 선택
+   2. New > New Dashboard 선택
+   3. 오른쪽 상단의 Save dashboard 저장 버튼(disk 모양) 선택
+      - <img src="images/disk_button.png" width= "200px">
+   4. Dashboard name: hello dashboard 입력 및 저장 
+3. 대시보드 확인
+   1. 왼쪽 Dashboards 메뉴 선택
+   2. 앞서 만든 hello dashboard 선택
+
+### (4) 패널 만들기
+
+- 대시보드 : 큰틀 / 패널 : 그 안에 모듈처럼 들어가는 실제 그래프
+
+1. 대시보드에 패널 만들기
+   1. 오른쪽 상단의 `Add panel` 버튼(차트 모양) 선택
+   2. `Add Visualization` 메뉴 선택
+   3. 패널의 정보를 입력할 수 있는 화면이 나타남
+   4. 아래에 보면 `Run queries` 버튼 오른쪽에 `Builder`, `Code` 라는 버튼 중에 `Code` 선택
+      - <img src="images/code.png" width= "900px">
+   5. Enter a PromQL query... 라는 부분에 메트릭을 입력한다.
+      ```
+      system_cpu_usage
+      ```
+
+## [3] 그라파나 - CPU 메트릭 만들기
+
+예시
+> - system_cpu_usage : 시스템의 CPU 사용량
+> - process_cpu_usage : JVM 프로세스 CPU 사용량
+
+1. CPU 메트릭 만들기
+    - PromQL 에 system_cpu_usage 를 입력하고 `Run queries` 버튼을 선택
+2. 메트릭 추가하기 (process_cpu_usage)
+    - +Query 클릭
+    - `process_cpu_usage` 입력 및 `Run queries` 클릭
+
+![img.png](images/add%20metric.png)
+
+![img.png](images/add_query.png)
+
+3. 그래프 데이터 이름 변경
+    - 하단 Options > Legend > Custom 변경 > custom 이름 변경(e.g. system cpu, process cpu)
+
+![img.png](images/pannel_data_name.png)
+
+
+4. 패널 이름 변경
+    - 오른 쪽 Panel options > title 수정
+
+![img_1.png](images/pannel_name.png)
+
+<br>
+
+## [4] 그라파나 - 디스크 사용량 추가하기
+
+1. 오른쪽 상단 Apply 버튼 추가
+2. title : 디스크 사용량 추가
+3. PromQL
+   - 전체 디스크 용량 : disk_total_bytes
+   - 사용 디스크 용량 : disk_total_bytes - disk_free_bytes(전체 디스크 용량 - 남은 디스크 용량)
+4. 그래프 데이터 사이즈 변경
+   - default: bytes
+   - `Standard options > Unit > Data > bytes(SI)` 선택
+   - GB, TB 단위로 변경
+5. 최소값 변경
+   - default: 현재 상태에서 최적화 
+   - Disk 사용량은 0 부터 시작하는 것을 권장
+   - `Standard options > Min > 0` 설정
+
+`before`
+![img.png](images/disk_dashboard_before.png)
+`after`
+![img.png](images/disk_dashboard_after.png)
+
+<br>
+
+## [5] 그라파나 - 대시보드 불러오기
+
+- 스프링 부트 시스템 모니터 대시보드 불러오기
+
+### (1) 대시보드 불러오기
+1. 
+2. 왼쪽 Dashboards 메뉴 선택
+2. New 버튼 선택 > Import 선택
+3. 불러올 대시보드 숫자 11378 입력 및 Load 버튼 선택
+4. Prometheus 데이터소스 선택하고 Import 선택
+
+![img_1.png](images/import_dashboard.png)
+
+### (2) 불러온 대시보드 수정하기
+
+1. Jetty 통계 Tomcat 통계 기준 통계 수집
+   - default: Jetty
+   - Jetty Statistics 부분으로 이동한 다음 설정 버튼을 통해 Title 을 Tomcat Statistics 로 변경한다.
+2. Thread Config Max 패널 설정 변경
+   - `jetty_threads_config_max` > `tomcat_threads_config_max_threads` 변경
+3. Thread 패널 설정 변경
+   - `jetty_threads_current` > `tomcat_threads_current_threads`
+   - `jetty_threads_busy` > `tomcat_threads_busy_threads`
+   - `jetty_threads_idle` 제거
+   - `jetty_threads_jobs` 제거
+
+<br>
+

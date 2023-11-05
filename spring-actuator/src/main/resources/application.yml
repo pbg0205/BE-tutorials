@@ -64,3 +64,8 @@ management:
   endpoints:
     web:
 #      base-path: "/manage"
+
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true

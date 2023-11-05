@@ -1368,3 +1368,4 @@ scrape_configs:
 
 <br>
 
+<img src="images/spring-boot-dashboard.png" width="700">

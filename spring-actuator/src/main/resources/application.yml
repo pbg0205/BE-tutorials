@@ -2,17 +2,17 @@
 management:
   endpoint:
 
-    # shutdown ????? ???
+    # shutdown 설정 노출 여부
     shutdown:
       enabled: true
   endpoints:
 
-    # jmx ? health, info ??
+    # jmx 관련 설정(e.g. health, info 옵션 포함)
     jmx:
       exposure:
         include: "health,info"
 
-    # web ? ?? ????? ????? env, beans ??
+    # web 에 노출할 요소들 설정 및 env, beans 노출 제외
     web:
       exposure:
         include: "*"
@@ -22,8 +22,8 @@ management:
 management:
   endpoint:
     health:
-      show-details: always # ?? ??? ???? ?? ?? ?? ??
-      show-components: always # ? ?? ????? ?? ??? ???? ??
+      show-details: always # 헬스 정보를 더 자세히 보기 위한 옵션
+      show-components: always # 각 헬스 컴포넌트의 상태 정보만 간략하게 노출
 
 ---
 # java, os ?? ??

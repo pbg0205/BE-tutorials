@@ -50,14 +50,14 @@ info:
 
 
 ---
-# log level ??
+# log level 설정
 
 logging:
   level:
     com.cooper.springactuator.controller: debug
 
 ---
-# endpoint ?? ??
+# endpoint 변경
 ## /actuator/{endpoint} -> /manage/{endpoint}
 
 management:

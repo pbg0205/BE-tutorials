@@ -1,0 +1,24 @@
+spring:
+  threads:
+    virtual:
+      enabled: true
+
+---
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://localhost:3306/cooper_db
+    username: root
+    password: cooper2021
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 30000  # ?? ???? ?? ?? ?? ?? (ms)
+      maximum-pool-size: 20  # ??? ?? ?? ?? ??
+      minimum-idle: 10

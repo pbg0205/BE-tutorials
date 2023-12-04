@@ -9,7 +9,7 @@ class Main {
         String dummyPath = DummyInsertGenerator.createDummy(
                 Paths.get("/Users/cooper/Cooper/study/java/BE-tutorials/java-practice/src/main/java/com/cooper/nio/data.sql"),
                 "employee",
-                400_000);
+                200);
 
         System.out.println("dummy data path: " + dummyPath);
     }

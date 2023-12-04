@@ -23,9 +23,10 @@ public final class DummyInsertGenerator {
         List<String> dummyData = new ArrayList<>();
 
         for (int i = 1; i <= size; i++) {
-            String dummy = String.format("INSERT INTO employee VALUES (%d, \"사원%d\", %d);",
-                    i,
-                    i,
+            String dummy = String.format("INSERT INTO %s VALUES (%d, \"사원%d\", %d);",
+                    tableName,
+                    i * 100_000,
+                    i * 100_000,
                     ((i - 1) / (size / 8)) + 1
             );
 

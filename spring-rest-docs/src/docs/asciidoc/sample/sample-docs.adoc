@@ -3,7 +3,6 @@
 :icons: font
 :source-highlighter: highlightjs
 :toc: left
-:toclevels:2
 
 == 샘플 단건 조회
 

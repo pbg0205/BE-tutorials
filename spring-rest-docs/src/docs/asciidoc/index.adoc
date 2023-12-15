@@ -1,0 +1,13 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+= 백엔드 서버 API 문서
+notification-api-docs
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+include::{docdir}/sample/sample-docs.adoc[]

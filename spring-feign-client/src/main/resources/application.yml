@@ -5,7 +5,7 @@ logging:
 
 request:
   server:
-    url: http://localhost:8080
+    url: https://apis.data.go.kr/1471000/DURPrdlstInfoService03
 
 feign:
   client:

@@ -1,9 +1,12 @@
 package com.example.springfeignclient.client.feign_client;
 
-import com.example.springfeignclient.client.config.FeignClientConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.springfeignclient.client.config.FeignClientConfig;
+import com.example.springfeignclient.client.dto.OpenApiResponseDto;
 
 @FeignClient(
         value = "jsonPlaceHolderClient",
@@ -12,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 )
 public interface JsonPlaceHolderClient {
 
-    @GetMapping("/api/server/v1")
-    ResponseEntity<String> getRequest();
+    @GetMapping("/getPwnmTabooInfoList03")
+    ResponseEntity<OpenApiResponseDto> getRequest(@RequestParam String serviceKey, @RequestParam String type);
 
 }

@@ -1,0 +1,4 @@
+POST https://kauth.kakao.com/oauth/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code&client_id=6c39525c457e9ec6226c4dcef6130eaf&redirect_uri=http://localhost:8080/oauth/kakao&code=&client_secret=

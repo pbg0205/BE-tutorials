@@ -11,4 +11,10 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/resource-versioning")
+    public String resourceVersioning() {
+        return "resource-versioning";
+    }
+
+
 }

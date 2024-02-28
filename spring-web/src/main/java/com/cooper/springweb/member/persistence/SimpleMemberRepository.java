@@ -1,13 +1,12 @@
 package com.cooper.springweb.member.persistence;
 
+import com.cooper.springweb.member.domain.Member;
+import com.cooper.springweb.member.domain.MemberRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.stereotype.Repository;
-
-import com.cooper.springweb.member.domain.Member;
-import com.cooper.springweb.member.domain.MemberRepository;
 
 @Repository
 public class SimpleMemberRepository implements MemberRepository {

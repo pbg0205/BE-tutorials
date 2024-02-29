@@ -6,8 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    @GetMapping
+    @GetMapping("/")
     public String index() {
+        return "index";
+    }
+
+    @GetMapping("/etag")
+    public String etag() {
         return "index";
     }
 
@@ -15,6 +20,4 @@ public class IndexController {
     public String resourceVersioning() {
         return "resource-versioning";
     }
-
-
 }

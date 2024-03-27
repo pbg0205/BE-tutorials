@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ResourceVersion {
 
-	private static final String DEFAULT_DATE_TIME_FORMAT = "yyyyMMddHHmmSS";
+	private static final String DEFAULT_DATE_FORMAT = "yyyyMMdd";
 
 	private String version;
 
@@ -23,7 +23,7 @@ public class ResourceVersion {
 	}
 
 	private static String now() {
-		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DEFAULT_DATE_TIME_FORMAT);
+		final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DEFAULT_DATE_FORMAT);
 		return LocalDateTime.now().format(formatter);
 	}
 }

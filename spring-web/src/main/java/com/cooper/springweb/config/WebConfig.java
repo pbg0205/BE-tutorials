@@ -8,7 +8,6 @@ import com.cooper.springweb.filter.ExceptionFilter;
 import com.cooper.springweb.filter.WhaleUrlPatternFilter;
 import com.cooper.springweb.support.ResourceVersion;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,9 +20,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.mvc.WebContentInterceptor;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class WebConfig implements WebMvcConfigurer {
 
     private final ResourceVersion version;
@@ -36,7 +37,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public FilterRegistrationBean<WhaleUrlPatternFilter> uriFilterRegistrationBean() {
         FilterRegistrationBean<WhaleUrlPatternFilter> registrationBean = new FilterRegistrationBean<>();
-
         registrationBean.setFilter(new WhaleUrlPatternFilter());
         registrationBean.addUrlPatterns("/api/whale/*");
         registrationBean.setOrder(3);
@@ -47,7 +47,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public FilterRegistrationBean<ExceptionFilter> exceptionRegistrationBean() {
         FilterRegistrationBean<ExceptionFilter> registrationBean = new FilterRegistrationBean<>();
-
         registrationBean.setFilter(new ExceptionFilter());
         registrationBean.addUrlPatterns("/api/exception/*");
         registrationBean.setOrder(4);
@@ -67,6 +66,9 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(final InterceptorRegistry registry) {
+
+        log.info("resource version: {}", version.getVersion());
+
         WebContentInterceptor interceptor = new WebContentInterceptor();
         interceptor.addCacheMapping(CacheControl.noCache().cachePrivate(), "/*");
         registry.addInterceptor(interceptor)

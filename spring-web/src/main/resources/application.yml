@@ -5,3 +5,10 @@ spring:
 logging:
   level:
     com.cooper.springweb: debug
+
+server:
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/javascript,application/json,image/jpeg
+
+    min-response-size: 10

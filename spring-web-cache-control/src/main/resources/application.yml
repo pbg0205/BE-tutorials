@@ -1,0 +1,14 @@
+spring:
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+logging:
+  level:
+    com.cooper.com.cooper.springwebcachecontrol: debug
+
+server:
+  compression:
+    enabled: true
+    mime-types: text/html,text/css,application/javascript,application/json,image/jpeg
+
+    min-response-size: 10

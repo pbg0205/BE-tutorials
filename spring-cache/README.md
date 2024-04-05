@@ -2,11 +2,11 @@
 
 ## Index
 
-- Cache Abstarction
+- Cache Abstraction
 - Declarative Annotation-based Caching
 - Custom Key Generation Declaration
 
-## Cache Abstarction
+## Cache Abstraction
 
 ---
 
@@ -42,6 +42,24 @@
 2. 캐시 쓰기 전략 (Write Cache Strategy)
    - Write Behind pattern - 데이터 저장 시, DB에 바로 쿼리하지 않고 캐시에 모아서 일정 주기 배치 작업으로 DB 반영
    - Write Through pattern - 데이터를 저장할 때 먼저 캐시에 저장한 다음 바로 DB에 저장
+
+`look-aside`
+
+![img.png](images/look-aside.png)
+
+`read-through`
+
+![img.png](images/read-through.png)
+
+`write-back`
+
+![img.png](images/write-back.png)
+
+`write-around`
+
+![img.png](images/write-around.png)
+
+(출처 : https://yoongrammer.tistory.com/101)
 
 <br>
 

@@ -1,0 +1,76 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+    id 'com.epages.restdocs-api-spec' version '0.18.2'
+}
+
+group = 'com.cooper'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    asciidoctorExtensions
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('snippetsDir', file("build/generated-snippets"))
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    asciidoctorExtensions 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.19.2'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.8.0'
+}
+
+openapi3 {
+    server = 'http://localhost:8080'
+    title = 'Cooper API'
+    description = 'Cooper API description'
+    // tagDescriptionsPropertiesFile = 'src/docs/tag-descriptions.yaml'
+    version = '0.1.0'
+    format = 'yaml'
+}
+
+tasks.named('test') {
+    outputs.dir snippetsDir
+    useJUnitPlatform()
+}
+
+tasks.named('asciidoctor') {
+    configurations 'asciidoctorExtensions'
+    baseDirFollowsSourceFile()
+    inputs.dir snippetsDir
+    dependsOn test
+}
+
+bootJar {
+    from("${asciidoctor.outputDir}") {
+        into "BOOT-INF/classes/static/docs"
+    }
+    from("swagger-ui") {
+        into "BOOT-INF/classes/static/swagger"
+    }
+    from("build/api-spec") {
+        into "BOOT-INF/classes/static/swagger"
+    }
+    dependsOn('openapi3') // openapi3 실행하고 이후에 bootJar 실행
+
+    archiveFileName.set "application-" + getVersion() + ".jar"
+}

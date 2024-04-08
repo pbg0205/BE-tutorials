@@ -68,8 +68,8 @@ class PostDocumentation extends Documentation {
 	}
 
 	@Test
-	@DisplayName("게시물 조회")
-	void findById() throws Exception {
+	@DisplayName("게시물 조회 성공")
+	void findByIdSuccess() throws Exception {
 		//given
 		long postId = 1L;
 		given(postService.findById(any())).willReturn(new PostLookupResponse(postId, "title", "content"));
@@ -79,7 +79,7 @@ class PostDocumentation extends Documentation {
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 			.andExpect(status().isOk())
-			.andDo(document("member-find", memberFindRequest(), memberFindResponse()));
+			.andDo(document("member-find-success", memberFindRequest(), memberFindResponse()));
 	}
 
 	private Snippet memberFindRequest() {
@@ -95,7 +95,33 @@ class PostDocumentation extends Documentation {
 	}
 
 	@Test
-	@DisplayName("게시물 갱신")
+	@DisplayName("게시물 조회 실패")
+	void findByIdFail() throws Exception {
+		//given
+		long postId = 2L;
+		given(postService.findById(any())).willThrow(new IllegalArgumentException("not found post"));
+
+		// when
+		mockMvc.perform(get("/api/posts").queryParam("id", String.valueOf(postId))
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+			.andExpect(status().isBadRequest())
+			.andDo(document("member-find-fail", memberFindBadRequest(), memberFindBadResponse()));
+	}
+
+	private Snippet memberFindBadRequest() {
+		return queryParameters(parameterWithName("id").description("게시물 아이디"));
+	}
+
+	private Snippet memberFindBadResponse() {
+		return responseFields(
+			fieldWithPath("type").type(JsonFieldType.STRING).description("에러 타입"),
+			fieldWithPath("message").type(JsonFieldType.STRING).description("에러 메세지")
+		);
+	}
+
+	@Test
+	@DisplayName("게시물 갱신 성공")
 	void update() throws Exception {
 		//given
 		long postId = 1L;
@@ -117,7 +143,7 @@ class PostDocumentation extends Documentation {
 				jsonPath("id").value(postId),
 				jsonPath("title").value(updateTitle),
 				jsonPath("content").value(updateContent))
-			.andDo(document("member-update", memberUpdateRequest(), memberUpdateResponse()));
+			.andDo(document("member-update-success", memberUpdateRequest(), memberUpdateResponse()));
 	}
 
 	private Snippet memberUpdateRequest() {
@@ -133,6 +159,44 @@ class PostDocumentation extends Documentation {
 			fieldWithPath("id").type(JsonFieldType.NUMBER).description("게시물 아이디"),
 			fieldWithPath("title").type(JsonFieldType.STRING).description("게시물 제목"),
 			fieldWithPath("content").type(JsonFieldType.STRING).description("게시물 내용")
+		);
+	}
+
+	@Test
+	@DisplayName("게시물 갱신 실패")
+	void updateFail() throws Exception {
+		//given
+		long postId = 2L;
+		String updateTitle = "update title";
+		String updateContent = "update content";
+
+		given(postService.update(any())).willThrow(new IllegalArgumentException("not found post"));
+
+		PostUpdateRequest postUpdateRequest = new PostUpdateRequest(postId, updateTitle, updateContent);
+		String requestBody = objectMapper.writeValueAsString(postUpdateRequest);
+
+		// when
+		mockMvc.perform(RestDocumentationRequestBuilders.put("/api/posts")
+				.content(requestBody)
+				.contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON))
+			.andExpectAll(
+				status().isBadRequest())
+			.andDo(document("member-update-fail", memberUpdateFailRequest(), memberUpdateFailResponse()));
+	}
+
+	private Snippet memberUpdateFailRequest() {
+		return requestFields(
+			fieldWithPath("id").type(JsonFieldType.NUMBER).description("게시물 아이디"),
+			fieldWithPath("title").type(JsonFieldType.STRING).description("게시물 이름"),
+			fieldWithPath("content").type(JsonFieldType.STRING).description("게시물 내용")
+		);
+	}
+
+	private Snippet memberUpdateFailResponse() {
+		return responseFields(
+			fieldWithPath("type").type(JsonFieldType.STRING).description("에러 타입"),
+			fieldWithPath("message").type(JsonFieldType.STRING).description("에러 메세지")
 		);
 	}
 

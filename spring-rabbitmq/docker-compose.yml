@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:3.7.14-management-alpine
+    container_name: rabbitmq-container
+    volumes:
+      - ./.docker/rabbitmq/etc/:/etc/rabbitmq/ # rabbitmq 환경 파일
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/ # rabbitmq 데이터에 접근하기 위함
+      - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/ # rabbitmq 로그에 접근하기 위함
+    ports:
+      - "5672:5672" # rabbitmq default port
+      - "15672:15672" # rabbitmq web ui port
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin

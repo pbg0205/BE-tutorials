@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: spring-rabbitmq
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "admin"
+    password: "admin"
+    template:
+      retry:
+        enabled: true
+        initial-interval: "2s"
+logging:
+  level:
+    com.cooper.springrabbitmq: debug

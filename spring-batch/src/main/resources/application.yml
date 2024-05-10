@@ -1,3 +1,9 @@
 spring:
   application:
     name: spring-batch
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/cooper_db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: cooper2021
+

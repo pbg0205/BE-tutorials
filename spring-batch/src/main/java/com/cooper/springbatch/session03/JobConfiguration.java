@@ -1,6 +1,10 @@
 package com.cooper.springbatch.session03;
 
+import java.util.Date;
+import java.util.Map;
+
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -36,6 +40,23 @@ public class JobConfiguration {
 				public RepeatStatus execute(final StepContribution stepContribution,
 					final ChunkContext chunkContext) throws Exception {
 					System.out.println("step1 was executed.");
+
+					// JobParameter 주입1
+					JobParameters jobParameters01 = stepContribution.getStepExecution()
+						.getJobExecution()
+						.getJobParameters();
+
+					System.out.println("user : " + jobParameters01.getString("name"));
+					System.out.println("age : " + jobParameters01.getDouble("age"));
+					System.out.println("date : " + jobParameters01.getDate("date"));
+
+					// JobParameter 주입2
+					Map<String, Object> jobParameters02 = chunkContext.getStepContext().getJobParameters();
+
+					System.out.println("user : " + jobParameters02.get("name"));
+					System.out.println("age : " + jobParameters02.get("age"));
+					System.out.println("date : " + jobParameters02.get("date"));
+
 					return RepeatStatus.FINISHED;
 				}
 			})
@@ -45,16 +66,11 @@ public class JobConfiguration {
 	@Bean
 	public Step step2() {
 		return stepBuilderFactory.get("step2")
-			.tasklet(new Tasklet() {
-				@Override
-				public RepeatStatus execute(final StepContribution stepContribution,
-					final ChunkContext chunkContext) throws Exception {
-					System.out.println("step2 was executed.");
-					return RepeatStatus.FINISHED;
-				}
+			.tasklet((stepContribution, chunkContext) -> {
+				System.out.println("step2 was executed.");
+				return RepeatStatus.FINISHED;
 			})
 			.build();
-
 	}
 
 }

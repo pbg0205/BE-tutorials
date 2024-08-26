@@ -1,4 +1,4 @@
-package com.cooper.springbatch.session03;
+package com.cooper.springbatch.session03._0101tasklet;
 
 import java.util.Date;
 import java.util.Map;
@@ -17,6 +17,8 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.RequiredArgsConstructor;
 
+import com.cooper.springbatch.session03._0102_listener.JobResultListener;
+
 @Configuration
 @RequiredArgsConstructor
 public class JobConfiguration {
@@ -29,6 +31,7 @@ public class JobConfiguration {
 		return jobBuilderFactory.get("job")
 			.start(step1())
 			.next(step2())
+			.listener(new JobResultListener())
 			.build();
 	}
 

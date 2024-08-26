@@ -1,4 +1,4 @@
-package com.cooper.springbatch.session03;
+package com.cooper.springbatch.session03._0101tasklet;
 
 import java.util.Date;
 
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 
-@Component
+@Component("jobRunner01")
 @RequiredArgsConstructor
 public class JobRunner implements ApplicationRunner {
 

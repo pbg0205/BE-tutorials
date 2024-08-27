@@ -28,7 +28,7 @@ public class JobConfiguration {
 
 	@Bean
 	public Job job() {
-		return jobBuilderFactory.get("job")
+		return jobBuilderFactory.get("job01")
 			.start(step1())
 			.next(step2())
 			.listener(new JobResultListener())

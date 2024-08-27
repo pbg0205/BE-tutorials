@@ -1,0 +1,28 @@
+# Virtual Thread
+
+## Virtual Thread 란??
+
+### 1. 기존의 Java 쓰레드의 한계
+
+1. 자바의 쓰레드는 OS 쓰레드를 기반으로 한다.
+    - 자바의 전통적인 스레드는 <u>OS 스레드를 랩핑(wrapping)한 것</u>으로 이를 <u>플랫폼 스레드</u> 라고 정의한다. (자바의 전통적인 스레드=플랫폼 스레드)
+    - `Java Platform thread` 는 `OS kernel thread` 와 1대1 매핑한다.
+    - OS 커널에서 사용할 수 있는 스레드는 <u>갯수가 제한적</u>이고 <u>생성과 유지 비용이 비싸다.</u>
+
+2. 처리량의 한계
+    - 애플리케이션의 기본적인 사용자 요청 처리 방식은 `Thread Per Request` 이므로 스레드를 무한정 늘릴 수 없다.
+    - 애플리케이션의 처리량(throughput)은 <u>스레드 풀에서 감당할 수 있는 범위를 넘어서 늘어날 수 없다.</u>
+
+<br>
+
+## References
+
+- [Virtual Thread란 무엇일까? (1)](https://findstar.pe.kr/2023/04/17/java-virtual-threads-1/)
+- [Virtual Thread란 무엇일까? (2)](https://findstar.pe.kr/2023/07/02/java-virtual-threads-2/)
+- [Oracle] Coming to Java 19: Virtual threads and platform threads
+ (https://blogs.oracle.com/javamagazine/post/java-loom-virtual-threads-platform-threads)
+
+[youtube 영상]
+
+- https://youtube.com/watch?v=vorIqiLM7jc&list=PLcXyemr8ZeoQOtSUjwaer0VMJSMfa-9G-&index=11
+- https://www.youtube.com/watch?v=B4Of4UgLfWc&t=11s

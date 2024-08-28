@@ -1,4 +1,4 @@
-package com.cooper.springbatch.session03._03execution_context;
+package com.cooper.springbatch.section03._03execution_context;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

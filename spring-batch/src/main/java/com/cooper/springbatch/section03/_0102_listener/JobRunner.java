@@ -1,32 +1,31 @@
-package com.cooper.springbatch.session03._0101tasklet;
-
-import java.util.Date;
+package com.cooper.springbatch.section03._0102_listener;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import lombok.RequiredArgsConstructor;
-
-@Component("jobRunner01")
-@RequiredArgsConstructor
+@Component("jobRunner02")
 public class JobRunner implements ApplicationRunner {
 
-	private final JobLauncher jobLauncher;
-	private final Job job;
+	@Autowired
+	private JobLauncher jobLauncher;
+
+	@Autowired
+	private Job job;
 
 	@Override
-	public void run(final ApplicationArguments args) throws Exception {
+	public void run(ApplicationArguments args) throws Exception {
+
 		JobParameters jobParameters = new JobParametersBuilder()
-			.addString("name", "user1")
-			.addDate("date", new Date())
-			.addDouble("age", 16.5)
+			.addString("name", "user2")
+			//                .addDate("reqDate", new Date())
 			.toJobParameters();
 
-		jobLauncher.run(job, jobParameters);
+		// jobLauncher.run(job,jobParameters);
 	}
 }

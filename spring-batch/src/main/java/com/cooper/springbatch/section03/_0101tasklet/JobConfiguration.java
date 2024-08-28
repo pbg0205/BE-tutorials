@@ -1,6 +1,5 @@
-package com.cooper.springbatch.session03._0101tasklet;
+package com.cooper.springbatch.section03._0101tasklet;
 
-import java.util.Date;
 import java.util.Map;
 
 import org.springframework.batch.core.Job;
@@ -17,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.RequiredArgsConstructor;
 
-import com.cooper.springbatch.session03._0102_listener.JobResultListener;
+import com.cooper.springbatch.section03._0102_listener.JobResultListener;
 
 @Configuration
 @RequiredArgsConstructor

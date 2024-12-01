@@ -1,0 +1,32 @@
+## ref
+## https://devocean.sk.com/blog/techBoardDetail.do?ID=164007
+## https://hub.docker.com/r/apache/kafka
+
+version: '3'
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_SERVER_ID: 1 # zookeeper 클러스터에서 유일하게 주키퍼를 식별할 아이디
+      ZOOKEEPER_CLIENT_PORT: 2181 # zookeeper_client_port를 지정 (zookeeper default port: 2181)
+      ZOOKEEPER_TICK_TIME: 2000 # zookeeper이 클러스터를 구성할때 동기화를 위한 기본 틱 타임을 지정
+      ZOOKEEPER_INIT_LIMIT: 5 # 주키퍼들이 리더에게 커넥션을 맺을때(쿼럼) 지정할 초기 타임아웃 시간 (대기 시간: ZOOKEEPER_TICK_TIME * ZOOKEEPER_INIT_LIMIT)
+      ZOOKEEPER_SYNC_LIMIT: 2 # 주키퍼 리더와 나머지 서버들의 싱크 타임 (대기 시간 ZOOKEEPER_TICK_TIME * ZOOKEEPER_SYNC_LIMIT)
+    ports:
+      - "22181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1 # kafka 브로커 아이디
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181' # kafka가 zookeeper에 커넥션하기 위한 대상을 지정 (zookeeper(서비스이름):2181(컨테이너내부포트))
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092 # 외부에서 접속하기 위한 리스너 설정
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT # 보안을 위한 프로토콜 매핑
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT # 도커 내부에서 사용할 리스너 이름을 지정
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1 # single 브로커인경우에 지정하여 1로 설정 (멀티 브로커는 설정 불필요
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0 # 카프카 그룹이 초기 리밸런싱할때 컨슈머들이 컨슈머 그룹에 조인할때 대기 시간

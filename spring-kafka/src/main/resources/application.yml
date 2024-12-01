@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: spring-kafka
+  kafka:
+    bootstrap-servers: localhost:29092
+
+greeting:
+  topic:
+    name: greeting

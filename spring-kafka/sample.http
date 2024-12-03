@@ -6,3 +6,22 @@ Content-Type: application/json
   "name": "cooper01",
   "message": "message01"
 }
+
+### create order
+POST http://localhost:8080/api/order
+Content-Type: application/json
+
+{
+  "address": ["address1", "address2", "address3"],
+  "price": 123
+}
+
+### publish order
+POST http://localhost:8080/api/order/publish
+Content-Type: application/json
+
+{
+  "orderId": "c446981c-9739-4b71-9f01-8293321af8ce",
+  "address":["address1","address2","address3"],
+  "price":123.0
+}

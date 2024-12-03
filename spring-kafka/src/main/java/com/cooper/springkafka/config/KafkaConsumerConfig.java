@@ -14,8 +14,6 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import java.util.HashMap;
 import java.util.Map;
 
-import lombok.extern.log4j.Log4j;
-
 import com.cooper.springkafka.dto.Greeting;
 
 @Configuration
@@ -38,6 +36,22 @@ public class KafkaConsumerConfig {
 		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
 		props.put(ConsumerConfig.GROUP_ID_CONFIG, "greeting");
 		return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(Greeting.class));
+	}
+
+	@Bean
+	public ConcurrentKafkaListenerContainerFactory<String, String> orderKafkaListenerContainerFactory() {
+		ConcurrentKafkaListenerContainerFactory<String, String> factory =
+			new ConcurrentKafkaListenerContainerFactory<>();
+		factory.setConsumerFactory(orderConsumerFactory());
+		return factory;
+	}
+
+
+	public ConsumerFactory<String, String> orderConsumerFactory() {
+		Map<String, Object> props = new HashMap<>();
+		props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+		props.put(ConsumerConfig.GROUP_ID_CONFIG, "orders");
+		return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new StringDeserializer());
 	}
 
 }

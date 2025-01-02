@@ -1,7 +1,7 @@
-package com.example.springdataredisexample.presentation;
+package com.example.springdataredisexample.members.presentation;
 
-import com.example.springdataredisexample.business.MemberService;
-import com.example.springdataredisexample.domain.Member;
+import com.example.springdataredisexample.members.business.MemberService;
+import com.example.springdataredisexample.members.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

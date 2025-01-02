@@ -1,6 +1,6 @@
 package com.example.springdataredisexample.study;
 
-import com.example.springdataredisexample.domain.Member;
+import com.example.springdataredisexample.members.domain.Member;
 import com.example.springdataredisexample.utils.MemberRedisStringUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

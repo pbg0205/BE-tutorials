@@ -1,6 +1,6 @@
 package com.example.springdataredisexample.utils;
 
-import com.example.springdataredisexample.domain.Member;
+import com.example.springdataredisexample.members.domain.Member;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 

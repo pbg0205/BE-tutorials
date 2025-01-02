@@ -1,7 +1,7 @@
-package com.example.springdataredisexample.business;
+package com.example.springdataredisexample.members.business;
 
-import com.example.springdataredisexample.domain.Member;
-import com.example.springdataredisexample.domain.MemberRepository;
+import com.example.springdataredisexample.members.domain.Member;
+import com.example.springdataredisexample.members.domain.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,8 @@
 package com.example.springdataredisexample.utils;
 
-import com.example.springdataredisexample.domain.Member;
+import com.example.springdataredisexample.members.domain.Member;
+
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
@@ -11,6 +13,7 @@ import java.util.List;
 @Component
 public class MemberRedisListUtils {
 
+    @Qualifier("memberRedisTemplate")
     private final RedisTemplate<String, Member> redisTemplate;
 
     public MemberRedisListUtils(RedisTemplate<String, Member> redisTemplate) {

@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: test-container
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:tc:mysql:8://test_db
+    username: root
+    password: cooper2025
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+  data:
+    redis:
+      host: localhost
+      port: 6379

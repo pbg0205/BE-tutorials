@@ -1,0 +1,14 @@
+POST localhost:8080/api/posts/presigned
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "제목",
+  "content": "내용",
+  "fileName": "123.png"
+}
+
+
+###
+GET localhost:8080/api/posts/presigned/1
+Content-Type: application/json

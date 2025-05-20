@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: presigned_url
+  cloud:
+    aws:
+      s3:
+        region: # TODO region
+      credentials:
+        access-key: # TODO access-key
+        secret-key: # TODO secret-key
+logging:
+  level:
+    io:
+      awspring:
+        cloud: debug
+
+aws:
+  bucket:
+    name: # TODO bucket-name

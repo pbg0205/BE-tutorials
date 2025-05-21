@@ -8,6 +8,10 @@ spring:
       credentials:
         access-key: # TODO access-key
         secret-key: # TODO secret-key
+  servlet:
+    multipart:
+      max-file-size: 10MB # multipart 데이터 용량 제한을 위한 프로퍼티
+      max-request-size: 10MB # multipart 데이터 용량 제한을 위한 프로퍼티
 logging:
   level:
     io:

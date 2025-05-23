@@ -25,7 +25,9 @@ public class ValidationExceptionHandler {
             System.out.println("constraintViolation.getConstraintDescriptor() = " + constraintViolation.getConstraintDescriptor());
             System.out.println("constraintViolation.getConstraintDescriptor().getAnnotation().annotationType() = "
               + constraintViolation.getConstraintDescriptor().getAnnotation().annotationType());
-            System.out.println("constraintViolation.getExecutableParameters() = " + constraintViolation.getExecutableParameters());
+            for (Object executableParameter : constraintViolation.getExecutableParameters()) {
+                System.out.println("executableParameter = " + executableParameter);
+            }
             System.out.println("constraintViolation.getExecutableReturnValue() = " + constraintViolation.getExecutableReturnValue());
             System.out.println("constraintViolation.getInvalidValue() = " + constraintViolation.getInvalidValue());
             System.out.println("--------------");

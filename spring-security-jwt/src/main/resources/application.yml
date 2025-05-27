@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: spring-security-authorization
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+  datasource:
+    url: jdbc:mysql://localhost:33306/test_db
+    username: root
+    password: test1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+logging:
+  level:
+    org.springframework.security: trace
+jwt:
+  access-token:
+    private-key: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQD9n0FgK1Vm8ZTQkwU12vdtxxLQXvO9Krl4wXomECq8Un1UrldUzPazruQdPR5ToU5U9RhS6Fbw3knpsJUNFyN3ZQIDAQABAoIBABcWpMCcm3CVrUqIjM75ndybP8SgKLRZ9G6uAgMBAAEC
+    expire-millis: 300000 # 5min
+

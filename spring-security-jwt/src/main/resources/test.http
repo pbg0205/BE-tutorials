@@ -1,0 +1,50 @@
+## 1. cooper user
+
+### (1) cooper user login
+POST localhost:8080/api/login
+Content-Type: application/json
+
+{
+  "email" : "cooper_user@gmail.com",
+  "password" : 1234
+}
+
+> {%
+  const body = (typeof response.body === "string") ? JSON.parse(response.body) : response.body;
+  client.global.set("accessToken", body.accessToken);
+  console.log(client.global.get("queueToken"));
+%}
+
+### (2) cooper user access user accessable url
+GET localhost:8080/api/members
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+## 2. cooper admin
+
+### (1) cooper admin login
+POST localhost:8080/api/login
+Content-Type: application/json
+
+{
+  "email" : "cooper_admin@gmail.com",
+  "password" : 123
+}
+
+> {%
+  const body = (typeof response.body === "string") ? JSON.parse(response.body) : response.body;
+  client.global.set("accessToken", body.accessToken);
+  console.log(client.global.get("queueToken"));
+%}
+
+### (2) cooper admin access admin accessable url
+GET localhost:8080/api/admin
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+
+### (2) cooper admin access user accessable url
+GET localhost:8080/api/members
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}

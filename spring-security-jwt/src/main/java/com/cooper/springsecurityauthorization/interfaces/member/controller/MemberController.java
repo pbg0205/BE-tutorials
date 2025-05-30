@@ -5,13 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
-import com.cooper.springsecurityauthorization.domain.member.service.MemberService;
-
 @RestController
 @RequiredArgsConstructor
 public class MemberController {
-
-	private final MemberService memberService;
 
 	@GetMapping("/api/members")
 	public String getMember() {

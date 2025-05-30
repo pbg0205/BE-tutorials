@@ -1,4 +1,4 @@
-package com.cooper.springsecurityauthorization.domain.member.dto;
+package com.cooper.springsecurityauthorization.domain.auth.dto;
 
 import java.util.Collection;
 

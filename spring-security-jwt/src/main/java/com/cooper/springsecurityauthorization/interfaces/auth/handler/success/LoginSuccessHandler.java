@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.cooper.springsecurityauthorization.domain.member.service.JwtProvider;
-import com.cooper.springsecurityauthorization.domain.member.dto.MemberAuthDetails;
+import com.cooper.springsecurityauthorization.domain.auth.service.JwtProvider;
+import com.cooper.springsecurityauthorization.domain.auth.dto.MemberAuthDetails;
 import com.cooper.springsecurityauthorization.interfaces.auth.dto.response.LoginSuccessResponse;
 
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {

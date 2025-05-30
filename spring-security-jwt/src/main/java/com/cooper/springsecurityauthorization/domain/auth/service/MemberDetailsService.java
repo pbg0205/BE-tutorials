@@ -1,4 +1,4 @@
-package com.cooper.springsecurityauthorization.domain.member.service;
+package com.cooper.springsecurityauthorization.domain.auth.service;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,11 +11,11 @@ import lombok.RequiredArgsConstructor;
 
 import com.cooper.springsecurityauthorization.domain.member.model.Member;
 import com.cooper.springsecurityauthorization.domain.member.repository.MemberRepository;
-import com.cooper.springsecurityauthorization.domain.member.dto.MemberAuthDetails;
+import com.cooper.springsecurityauthorization.domain.auth.dto.MemberAuthDetails;
 
 @Service
 @RequiredArgsConstructor
-public class MemberService implements UserDetailsService {
+public class MemberDetailsService implements UserDetailsService {
 
 	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;

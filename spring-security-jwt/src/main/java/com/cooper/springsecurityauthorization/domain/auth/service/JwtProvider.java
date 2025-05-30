@@ -1,4 +1,4 @@
-package com.cooper.springsecurityauthorization.domain.member.service;
+package com.cooper.springsecurityauthorization.domain.auth.service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;

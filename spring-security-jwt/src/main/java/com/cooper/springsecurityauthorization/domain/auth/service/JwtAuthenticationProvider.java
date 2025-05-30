@@ -1,4 +1,4 @@
-package com.cooper.springsecurityauthorization.domain.member.service;
+package com.cooper.springsecurityauthorization.domain.auth.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.cooper.springsecurityauthorization.domain.member.dto.MemberAuthDetails;
-import com.cooper.springsecurityauthorization.domain.member.dto.LoginSuccessAuthenticationToken;
-import com.cooper.springsecurityauthorization.domain.member.dto.LoginTrialAuthenticationToken;
+import com.cooper.springsecurityauthorization.domain.auth.dto.MemberAuthDetails;
+import com.cooper.springsecurityauthorization.domain.auth.dto.LoginSuccessAuthenticationToken;
+import com.cooper.springsecurityauthorization.domain.auth.dto.LoginTrialAuthenticationToken;
 
 public class JwtAuthenticationProvider implements AuthenticationProvider {
 

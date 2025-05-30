@@ -27,7 +27,7 @@ import com.cooper.springsecurityauthorization.interfaces.auth.filter.AccessToken
 import com.cooper.springsecurityauthorization.interfaces.auth.filter.TokenLoginFilter;
 import com.cooper.springsecurityauthorization.interfaces.auth.handler.error.LoginFailureHandler;
 import com.cooper.springsecurityauthorization.interfaces.auth.handler.success.LoginSuccessHandler;
-import com.cooper.springsecurityauthorization.domain.member.service.JwtAuthenticationProvider;
+import com.cooper.springsecurityauthorization.domain.auth.service.JwtAuthenticationProvider;
 
 @Configuration
 @RequiredArgsConstructor

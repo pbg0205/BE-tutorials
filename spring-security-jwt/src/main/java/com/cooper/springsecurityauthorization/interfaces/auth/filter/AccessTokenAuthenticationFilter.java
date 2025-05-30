@@ -21,7 +21,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.cooper.springsecurityauthorization.domain.member.service.JwtProvider;
+import com.cooper.springsecurityauthorization.domain.auth.service.JwtProvider;
 import com.cooper.springsecurityauthorization.domain.member.model.MemberRole;
 import com.cooper.springsecurityauthorization.interfaces.auth.dto.token.CustomUserDetails;
 

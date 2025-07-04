@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SSE Example</title>
+</head>
+<body>
+<h1>SSE 메시지 수신</h1>
+<div id="messages"></div>
+
+<script>
+  const eventSource = new EventSource("/sse/connect?userName=view");
+
+  eventSource.onmessage = function(event) {
+    const msgDiv = document.getElementById("messages");
+    msgDiv.innerHTML += `<p>${event.data}</p>`;
+  };
+
+  eventSource.addEventListener("message", function(event) {
+    const msgDiv = document.getElementById("messages");
+    msgDiv.innerHTML += `<p><strong>message:</strong> ${event.data}</p>`;
+  });
+
+  eventSource.addEventListener("init", function(event) {
+    console.log("연결됨:", event.data);
+  });
+</script>
+</body>
+</html>
